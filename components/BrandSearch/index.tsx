@@ -93,7 +93,9 @@ export default function BrandSearch() {
               fill="#0055CC"
             />
           </svg>
-          <button className="text16">Найти</button>
+          <button className="text16" aria-label="Найти">
+            Найти
+          </button>
         </form>
 
         {error && <div style={{ color: "red" }}>{error}</div>}
@@ -108,6 +110,7 @@ export default function BrandSearch() {
                   selectedLetter === letter ? styles.active : ""
                 }`}
                 type="button"
+                aria-label="буква алфавита"
               >
                 {letter}
               </button>

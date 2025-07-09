@@ -48,6 +48,7 @@ export default function BrandText({ content }: any) {
             <MarkdownBrand content={content} expanded={expanded} />
 
             <button
+              aria-label="Показать или Скрыть"
               onClick={() => setExpanded(!expanded)}
               className={`${styles.toggle_btn} ${styles.text_small}`}
             >

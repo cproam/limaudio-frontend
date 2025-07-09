@@ -9,7 +9,11 @@ export default function NotFound() {
           <p className="text-h3" style={{ margin: "50px 0" }}>
             Извините, мы не смогли найти страницу, которую вы ищете.
           </p>
-          <button className="text-h3" style={{ background: "none" }}>
+          <button
+            className="text-h3"
+            style={{ background: "none" }}
+            aria-label="Вернуться на главную"
+          >
             <Link href="/">Вернуться на главную</Link>
           </button>
         </div>

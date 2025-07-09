@@ -174,7 +174,10 @@ export default function Markdown({ blocs }: any) {
                     </Swiper>
 
                     <div className="swiper-navigation">
-                      <button className="blog-button-prev">
+                      <button
+                        className="blog-button-prev"
+                        aria-label="Слайд предыдущий"
+                      >
                         <svg
                           width="15"
                           height="10"
@@ -189,7 +192,10 @@ export default function Markdown({ blocs }: any) {
                           />
                         </svg>
                       </button>
-                      <button className="blog-button-next">
+                      <button
+                        className="blog-button-next"
+                        aria-label="Слайд следующий"
+                      >
                         <svg
                           width="15"
                           height="10"

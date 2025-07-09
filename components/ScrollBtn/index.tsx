@@ -21,7 +21,11 @@ export default function ScrollBtn() {
   return (
     <>
       {visible && (
-        <button id="scrollToTopBtn" onClick={scrollToTop}>
+        <button
+          id="scrollToTopBtn"
+          onClick={scrollToTop}
+          aria-label="скролл наверх"
+        >
           <svg
             width="22"
             height="22"

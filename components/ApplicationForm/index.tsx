@@ -164,6 +164,7 @@ export default function ApplicationForm({
             type="submit"
             className="blogbtnblue standart-btn text-h3"
             disabled={loading}
+            aria-label="Получить подборку"
           >
             Получить подборку
           </button>

@@ -112,7 +112,11 @@ export default function BlogMainPage() {
         </div>
         {visibleGroups < groupedCards.length && (
           <div className="show-more-wrapper">
-            <button onClick={showMore} className="showbtn text">
+            <button
+              onClick={showMore}
+              className="showbtn text"
+              aria-label="Показать ещё"
+            >
               Показать еще
             </button>
           </div>

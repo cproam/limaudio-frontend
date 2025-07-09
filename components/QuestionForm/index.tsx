@@ -160,6 +160,7 @@ export default function QuestionForm() {
               type="submit"
               className="blogbtnblue standart-btn text-h3"
               disabled={loading}
+              aria-label="Отправить"
             >
               Отправить
               <svg

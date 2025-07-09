@@ -159,6 +159,7 @@ export default function Comments({
               </div>
               <div className={styles.comments__btn}>
                 <button
+                  aria-label="Ответить на комментарий"
                   className={`${styles.comment_reply} text16`}
                   onClick={() =>
                     startReply(comment.id, comment.name, comment.documentId)
@@ -207,6 +208,7 @@ export default function Comments({
                   </div>
                   <div className={styles.comments__actions}>
                     <button
+                      aria-label="Отменить"
                       type="button"
                       className="blogbtn standart-btn text-h3"
                       onClick={() => {
@@ -217,6 +219,7 @@ export default function Comments({
                       Отменить
                     </button>
                     <button
+                      aria-label="Отправить"
                       type="submit"
                       className="blogbtnblue standart-btn text-h3"
                       disabled={loadingReply || !replyText.trim()}
@@ -279,6 +282,7 @@ export default function Comments({
 
             <button
               type="submit"
+              aria-label="Отправить"
               className="blogbtnblue standart-btn text-h3"
               disabled={loading || !text.trim() || !name.trim()}
             >

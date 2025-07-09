@@ -171,6 +171,7 @@ export default function Brands() {
           <button
             className={`text showbtn ${styles.showbtnslider}`}
             onClick={handleToggle}
+            aria-label="Посмотреть все"
           >
             {isExpanded ? "Скрыть" : "Посмотреть все"}
           </button>

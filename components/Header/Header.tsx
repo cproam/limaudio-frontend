@@ -145,7 +145,10 @@ export default function Header() {
                     />
                   </svg>
                 </button>*/}
-                <button onClick={() => setHeaderMenu(true)}>
+                <button
+                  aria-label="Открыть меню"
+                  onClick={() => setHeaderMenu(true)}
+                >
                   <svg
                     width="36"
                     height="36"

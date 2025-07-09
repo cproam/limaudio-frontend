@@ -129,6 +129,7 @@ const MapComponent: React.FC = () => {
         />
         <div className={styles.tabs}>
           <button
+            aria-label="г. Казань, ул. Бухарская, д. 32 к2"
             type="button"
             className={`${styles.tabButton} ${
               activeMap === 1 ? styles.active : ""
@@ -139,6 +140,7 @@ const MapComponent: React.FC = () => {
           </button>
           <button
             type="button"
+            aria-label="г. Новосибирск, ул. Гаранина, д. 15"
             className={`${styles.tabButton} ${
               activeMap === 2 ? styles.active : ""
             } ${styles.text20}`}

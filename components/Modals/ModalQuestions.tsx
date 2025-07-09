@@ -131,6 +131,7 @@ export const ModalQuestions: React.FC<ModalHeaderProps> = ({ onClose }) => {
           </div>
 
           <button
+            aria-label="Заказать"
             type="submit"
             className="blogbtnblue text20"
             disabled={loading}

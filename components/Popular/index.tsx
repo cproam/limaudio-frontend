@@ -268,6 +268,7 @@ export default function Popular() {
       <div className={styles.popular__text}>
         <Headline text="Популярные темы" />
         <button
+          aria-label="Популярные темы"
           className={`text-small ${styles.showbtnPopular}`}
           onClick={toggleList}
         >
@@ -286,7 +287,11 @@ export default function Popular() {
       </ul>
 
       <div className={styles.popular__search}>
-        <button className="text" onClick={handleSortByDate}>
+        <button
+          className="text"
+          onClick={handleSortByDate}
+          aria-label="сортировка по дате"
+        >
           {sortByDate === "asc" ? (
             <div>
               <div className={`${styles.strip} ${styles.strip_1}`}></div>
@@ -303,7 +308,11 @@ export default function Popular() {
           По дате
         </button>
 
-        <button className="text" onClick={handleSortByPopularity}>
+        <button
+          className="text"
+          onClick={handleSortByPopularity}
+          aria-label="сортировка по популярности"
+        >
           {sortByPopularity === "popular" ? (
             <div>
               <div className={`${styles.strip} ${styles.strip_1}`}></div>

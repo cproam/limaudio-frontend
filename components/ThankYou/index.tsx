@@ -17,7 +17,9 @@ export default function ThankYou() {
         следующий рабочий день.
       </p>
       <Link href="/">
-        <button className="blogbtnblue">Вернуться на главную</button>
+        <button className="blogbtnblue" aria-label="Вернуться на главную">
+          Вернуться на главную
+        </button>
       </Link>
     </div>
   );
