@@ -5,6 +5,7 @@ import { ModalQuestions } from "../Modals/ModalQuestions";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { TEL, TELLINK, TG, WHATSAPP } from "@/lib/breadcrumbs";
+import { Switch } from "../Switch";
 
 export default function Footer() {
   const [callbackModal, setCallbackModal] = useState(false);
@@ -183,30 +184,8 @@ export default function Footer() {
               </ul>
             </ul>
 
-            {/*
             <div className={styles.footer__switch}>
-              <span className="text16">Светлая тема</span>
-              <div className="switch">
-                <input type="checkbox" id="toggle-switch" />
-                <label htmlFor="toggle-switch"></label>
-              </div>
-            </div>*/}
-
-            <div className={styles.footer__switch}>
-              <span className="text16">
-                {theme === "light" ? "Светлая тема" : "Тёмная тема"}
-              </span>
-              <div className="switch">
-                <input
-                  type="checkbox"
-                  id="toggle-switch"
-                  checked={theme === "dark"}
-                  onChange={() =>
-                    setTheme(theme === "light" ? "dark" : "light")
-                  }
-                />
-                <label htmlFor="toggle-switch"></label>
-              </div>
+              <Switch />
             </div>
           </div>
         </div>
