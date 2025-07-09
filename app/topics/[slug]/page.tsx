@@ -83,7 +83,6 @@ export default async function TopicPageWrapper({ params }: PageProps) {
   // Await the params to get the slug
   const { slug } = await params;
   const label = getTopicLabel(slug);
-  console.log(slug);
 
   if (!label) {
     notFound();

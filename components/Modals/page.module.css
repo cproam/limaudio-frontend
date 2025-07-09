@@ -3,8 +3,8 @@
     position: fixed;
     top: auto;
     bottom: 250px;
-    right: 60px;
-    background: var(--color-white1);
+    right: 20%;
+    background: var(--color-white);
     padding: 20px;
     border-radius: 10px;
     z-index: 5;
@@ -37,5 +37,27 @@
     to {
         transform: translateY(100%);
         opacity: 0;
+    }
+}
+
+@media (max-width: 1400px) {
+    .infoModal {
+        right: 8%;
+
+    }
+}
+
+@media (max-width: 1250px) {
+    .infoModal {
+        right: 20px;
+
+    }
+}
+
+@media (max-width: 375px) {
+    .infoModal {
+        padding: 10px;
+        width: 90%;
+
     }
 }

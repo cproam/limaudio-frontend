@@ -6,7 +6,6 @@ export async function getGlobal() {
     next: { revalidate: 60 },
   });
 
-  console.log("Fetch status:", res.status);
   if (!res.ok) {
     const errorData = await res.text();
     console.error("Global fetch error:", errorData);

@@ -43,7 +43,6 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     const { name, text, id, parentId } = await req.json();
-    console.log("Received data:", { name, text, id, parentId });
 
     if (!name || !text || !id) {
       return NextResponse.json(
