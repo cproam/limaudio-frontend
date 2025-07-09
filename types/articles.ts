@@ -65,9 +65,41 @@ export type Articles = {
   };
 };
 
+export interface Article {
+  id: number;
+  documentId: string;
+  title: string;
+  description: string;
+  slug: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  views: number;
+  category: { name: string };
+  topics: { title: string }[];
+}
+
 export interface PageProps {
   params: {
     slug: string;
   };
   searchParams?: Record<string, string>;
+}
+
+export interface ArticleCard {
+  type: string;
+  category: { name: string };
+  comments: { count: number };
+  cover: { url: string };
+  createdAt: string;
+  description: string;
+  documentId: string;
+  id: number;
+  publishedAt: string;
+  slug: string;
+  title: string;
+  date?: string;
+  topics?: any;
+  updatedAt: string;
+  views: number;
 }

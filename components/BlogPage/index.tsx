@@ -7,22 +7,7 @@ import BlogMainWrapper from "@/components/BlogMainPageWrapper";
 import PopularWrapper from "../PopularWrapper";
 import Headline from "@/app/UI/headline";
 import "./../../styles/interes.css";
-
-interface Article {
-  id: number;
-  attributes: {
-    title: string;
-    description: string;
-    image: string;
-    category: {
-      data: {
-        attributes: {
-          name: string;
-        };
-      };
-    };
-  };
-}
+import { ArticleCard } from "@/types/articles";
 
 export default function BlogPage() {
   const [gridColumns, setGridColumns] = useState("repeat(3, 1fr)");
@@ -52,7 +37,7 @@ export default function BlogPage() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [articles, setArticles] = useState<ArticleCard[]>([]);
 
   useEffect(() => {
     const fetchCards = async () => {

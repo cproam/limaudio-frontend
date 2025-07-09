@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import BlogCard, { Card } from "../BlogCard";
-import { CardsResponse } from "@/types/card";
+import BlogCard from "../BlogCard";
+import { Card, CardsResponse } from "@/types/card";
 import { useSearchParams } from "next/navigation";
 import CardSkeleton from "../Loading/CardSkeleton";
 

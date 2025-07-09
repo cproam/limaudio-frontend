@@ -1,57 +1,5 @@
-/*
+import { Article } from "@/types/articles";
 import qs from "qs";
-
-if (!process.env.API_URL || !process.env.TOKEN) {
-  throw new Error("Missing API_URL or TOKEN in environment variables");
-}
-
-export async function getBrandsBySlug(slug: string): Promise<any | null> {
-  const query = qs.stringify(
-    {
-      filters: { slug: { $eq: slug } },
-      populate: "*",
-    },
-    {
-      encodeValuesOnly: true,
-    }
-  );
-
-  const res = await fetch(`${process.env.API_URL}/topics?${query}`, {
-    headers: {
-      Authorization: `Bearer ${process.env.TOKEN}`,
-      "Content-Type": "application/json",
-    },
-    next: { revalidate: 60 },
-  });
-
-  if (!res.ok) {
-    console.error("Error fetching article:", res.status);
-    return null;
-  }
-
-  const data = await res.json();
-  const brand = data?.data?.[0] ?? null;
-
-  return brand;
-  // return data?.data?.[0] ?? null;
-}
-*/
-// lib/topicUtils.ts
-import qs from "qs";
-
-interface Article {
-  id: number;
-  documentId: string;
-  title: string;
-  description: string;
-  slug: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  views: number;
-  category: { name: string };
-  topics: { title: string }[];
-}
 
 interface Seo {
   id: number;

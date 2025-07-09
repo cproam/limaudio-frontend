@@ -4,43 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { getBackgroundColor } from "@/lib/getBackgroundColor";
 import { formatIsoToDDMMYYYY } from "@/utils/mainFormatDate";
-
-type cover = {
-  url: string;
-};
-
-type name = {
-  name: string;
-};
-
-type comments = {
-  count: number;
-};
-
-export type Card = {
-  type: string;
-  category: name;
-  comments: comments;
-  cover: cover;
-  createdAt: string;
-  description: string;
-  documentId: string;
-  id: number;
-  publishedAt: string;
-  slug: string;
-  title: string;
-  date?: string;
-  topics?: any;
-  updatedAt: string;
-  views: number;
-};
+import { ArticleCard } from "@/types/articles";
 
 type CardItemProps = {
-  card: Card;
+  card: ArticleCard;
   type: "big" | "small";
 };
 
-export default function BlogCard({ card, type }: any) {
+export default function BlogCard({ card, type }: CardItemProps) {
   return (
     <Link href={`/blog/${card.slug}`}>
       <div

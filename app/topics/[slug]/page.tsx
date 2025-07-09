@@ -3,21 +3,7 @@ import { notFound } from "next/navigation";
 import { linksTopics } from "@/lib/footerLinks";
 import TopicPage from "./TopicPage";
 import { getMatchingTopics } from "@/app/api/topic/api";
-
-// Move these interfaces to a separate types file if used elsewhere
-interface Article {
-  id: number;
-  documentId: string;
-  title: string;
-  description: string;
-  slug: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  views: number;
-  category: { name: string };
-  topics: { title: string }[];
-}
+import { Article } from "@/types/articles";
 
 interface Seo {
   id: number;
@@ -88,7 +74,7 @@ export default async function TopicPageWrapper({ params }: PageProps) {
     notFound();
   }
 
-  let matchingTopics: Topic[] = [];
+  let matchingTopics: any;
   let error: string | null = null;
 
   try {
