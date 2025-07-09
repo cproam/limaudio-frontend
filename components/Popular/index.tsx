@@ -6,6 +6,7 @@ import Tags from "../Tags";
 import styles from "./page.module.css";
 import Headline from "@/app/UI/headline";
 import CardSkeleton from "../Loading/CardSkeleton";
+import { Topic } from "@/types/articles";
 
 interface Image {
   id: number;
@@ -14,7 +15,7 @@ interface Image {
 }
 
 interface DataItem {
-  topics: any;
+  topics: Topic[];
   id: number;
   documentId: string;
   createdAt: string;
@@ -119,6 +120,8 @@ export default function Popular() {
       });
     }
   }, [debouncedSearchQuery]);
+
+  console.log(tags);
 
   const updateURLParams = (newParams: {
     sortByDate?: string | null;

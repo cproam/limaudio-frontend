@@ -2,7 +2,11 @@
 
 import styles from "./page.module.css";
 
-export default function Share({ shareUrl }: any) {
+interface ShareProps {
+  shareUrl: string;
+}
+
+export default function Share({ shareUrl }: ShareProps) {
   const title = "Статья!";
 
   const shareLinks = {

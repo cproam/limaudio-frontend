@@ -22,7 +22,7 @@ interface SliderBlock extends BaseBlock {
 
 type Block = RichTextBlock | SliderBlock;
 
-type Topic = {
+export type Topic = {
   createdAt: string;
   documentId: string;
   id: number;
