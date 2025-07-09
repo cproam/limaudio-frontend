@@ -119,6 +119,7 @@ export default function Header() {
               )}
 
               <ul className={styles.header__contacts_min}>
+                {/*
                 <button
                   className="search-btn"
                   onClick={() => setInputOpen((prev) => !prev)}
@@ -143,7 +144,7 @@ export default function Header() {
                       fill="#0055CC"
                     />
                   </svg>
-                </button>
+                </button>*/}
                 <button onClick={() => setHeaderMenu(true)}>
                   <svg
                     width="36"
