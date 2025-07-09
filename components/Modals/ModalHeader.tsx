@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ModalQuestions } from "./ModalQuestions";
+import { Switch } from "../Switch";
 
 interface ModalHeaderProps {
   onClose: () => void;
@@ -28,11 +29,13 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
             <input type="checkbox" id="toggle-switch1" />
             <label htmlFor="toggle-switch1"></label>
           </div>
-        </div>*/}
+        </div>*/}{" "}
+        <Switch />
         <ul className="modal__list text16">
           {/*
           <Link href="">О компании</Link>*/}
           <Link href="/contacts">Контакты</Link>
+
           {/*
           <Link href="">Каталог</Link>*/}
           <br />
