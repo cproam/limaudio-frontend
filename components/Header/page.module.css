@@ -167,3 +167,9 @@
         padding: 14px 0;
     }
 }
+
+@media screen and (max-width: 360px) {
+    .header__block>nav>ul>li>a {
+        font-size: 14px;
+    }
+}
