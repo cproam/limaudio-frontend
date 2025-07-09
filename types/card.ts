@@ -42,7 +42,7 @@ export type Card = {
 };
 
 export type CardsResponse = {
-  length: any;
+  length?: undefined;
   data: Card[];
   meta: {
     pagination: {

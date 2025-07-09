@@ -99,7 +99,7 @@ export interface ArticleCard {
   slug: string;
   title: string;
   date?: string;
-  topics?: any;
+  topics?: Topic;
   updatedAt: string;
   views: number;
 }

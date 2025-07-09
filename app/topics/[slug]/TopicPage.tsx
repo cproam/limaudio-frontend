@@ -13,7 +13,6 @@ interface Topic {
 
 interface TopicApiResponse {
   data: Topic[];
-  meta: any;
 }
 
 interface Props {
@@ -34,8 +33,6 @@ export default function TopicPage({
   );
   const [error, setError] = useState<string | null>(initialError);
   const [topics, setTopics] = useState<Topic[]>(initialMatchingTopics);
-
-  console.log("articles", articles);
 
   useEffect(() => {
     const fetchCards = async () => {

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./page.module.css";
-import { Key, useState } from "react";
+import { JSX, Key, useState } from "react";
 
 interface Image {
   id: number;
@@ -11,6 +11,13 @@ interface Image {
 }
 
 interface uniqueTags {
+  map(
+    arg0: (e: {
+      id: Key | null | undefined;
+      title: string;
+      image: { url: string };
+    }) => JSX.Element
+  ): import("react").ReactNode;
   createdAt: string;
   documentId: string;
   id: number;
@@ -25,16 +32,12 @@ interface uniqueTags {
 }
 
 interface TagsProps {
-  uniqueTags: any;
+  uniqueTags: uniqueTags;
   onTagClick?: (selectedTags: (string | null)[]) => void;
   filter?: boolean;
 }
 
-export default function Tags({
-  uniqueTags = [],
-  onTagClick,
-  filter,
-}: TagsProps) {
+export default function Tags({ uniqueTags, onTagClick, filter }: TagsProps) {
   const [selectedTags, setSelectedTags] = useState<(string | null)[]>([]);
   if (!uniqueTags) {
     return null;
@@ -57,8 +60,8 @@ export default function Tags({
       {uniqueTags.map(
         (e: {
           id: Key | null | undefined;
-          title: any;
-          image: { url: any };
+          title: string;
+          image: { url: string };
         }) => (
           <li
             key={e.id}
