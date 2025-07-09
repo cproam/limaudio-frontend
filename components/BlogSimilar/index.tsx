@@ -2,7 +2,31 @@ import Link from "next/link";
 import { FormatDate } from "@/utils/formatDate";
 import { getBackgroundColor } from "@/lib/getBackgroundColor";
 
-export default function BlogSimilar({ card }: any) {
+export interface ArticleCarad {
+  type: string;
+  category: any;
+  comments: { count: number };
+  cover: any;
+  createdAt: string;
+  description: string;
+  documentId: string;
+  formAdjective: string;
+  formCategory: string;
+  id: number;
+  publishedAt: string;
+  slug: string;
+  title: string;
+  topics?: any;
+  updatedAt: any;
+  views: number;
+}
+
+export interface BlogSimilarProps {
+  card: ArticleCarad;
+  type?: string;
+}
+
+export default function BlogSimilar({ card }: BlogSimilarProps) {
   const scrollClick = () => {
     window.scrollTo(0, 0);
   };

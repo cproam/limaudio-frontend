@@ -4,9 +4,8 @@ import { Navigation } from "swiper/modules";
 import "./style.css";
 import "swiper/css";
 import "swiper/css/navigation";
-import styles from "./page.module.css";
 
-export default function BlogSlider({ card }: any) {
+export default function BlogSlider() {
   return (
     <>
       <div className="swiper blogSlider" style={{ position: "relative" }}>

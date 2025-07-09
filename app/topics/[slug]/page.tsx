@@ -3,22 +3,6 @@ import { notFound } from "next/navigation";
 import { linksTopics } from "@/lib/footerLinks";
 import TopicPage from "./TopicPage";
 import { getMatchingTopics } from "@/app/api/topic/api";
-import { Article } from "@/types/articles";
-
-interface Seo {
-  id: number;
-  metaTitle: string;
-  metaDescription: string;
-  metaKeys: string;
-  shareImage: any;
-}
-
-interface Topic {
-  title: string;
-  articles: Article[];
-  image?: { id: number; documentId: string; url: string };
-  seo?: Seo;
-}
 
 type PageProps = {
   params: Promise<{ slug: string }>;

@@ -121,8 +121,6 @@ export default function Popular() {
     }
   }, [debouncedSearchQuery]);
 
-  console.log(tags);
-
   const updateURLParams = (newParams: {
     sortByDate?: string | null;
     sortByPopularity?: string | null;

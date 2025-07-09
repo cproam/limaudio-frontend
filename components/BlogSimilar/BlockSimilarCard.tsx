@@ -75,7 +75,15 @@ export default function BlockSimilarCard({
       )}
       {error && <div style={{ color: "red" }}>{error}</div>}
       {allCards.data?.map((card) => (
-        <BlogSimilar key={card.id} card={card} type="small" />
+        <BlogSimilar
+          key={card.id}
+          card={{
+            ...card,
+            formAdjective: card.formAdjective || "", // Provide defaults
+            formCategory: card.category.name || "",
+          }}
+          type="small"
+        />
       ))}
     </div>
   );

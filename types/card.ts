@@ -13,6 +13,8 @@ type SliderBlock = {
 type Block = RichTextBlock | SliderBlock;
 
 export type Card = {
+  formAdjective?: string;
+  formCategory?: string;
   blocks: Block[];
   category: {
     documentId: string;
