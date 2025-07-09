@@ -11,6 +11,7 @@
 .contacts__about {
     width: 36.9%;
     padding: 20px 20px 20px 17px;
+    color: var(--color-black);
 }
 
 
@@ -92,11 +93,12 @@
     cursor: pointer;
     border-radius: 100px;
     transition: background-color 0.3s;
+    color: var(--color-black);
+
 }
 
 .tab_button.active {
     background-color: var(--color-grayF1);
-    color: var(--color-black1C);
 }
 
 .tab_button:hover {

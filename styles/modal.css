@@ -10,7 +10,8 @@
     justify-content: center;
     align-items: flex-start;
     z-index: 10;
-    overflow: auto
+    overflow: auto;
+    color: var(--color-black);
 }
 
 .modal-content {

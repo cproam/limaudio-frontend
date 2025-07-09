@@ -29,7 +29,7 @@
 }
 
 .header__logo svg {
-    fill: var(--foreground);
+    fill: var(--color-1C-fff);
 }
 
 .header__block {

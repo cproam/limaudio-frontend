@@ -92,6 +92,7 @@
 }
 
 .markdownContainer {
+    color: var(--color-black1C);
 
     h1,
     h2,
