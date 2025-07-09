@@ -3,6 +3,7 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import { ModalQuestions } from "../Modals/ModalQuestions";
 import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import { TEL, TELLINK, TG, WHATSAPP } from "@/lib/breadcrumbs";
 
 export default function Footer() {
@@ -27,6 +28,15 @@ export default function Footer() {
 
     fetchCards();
   }, []);
+
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   return (
     <footer className={styles.footer}>
@@ -181,6 +191,23 @@ export default function Footer() {
                 <label htmlFor="toggle-switch"></label>
               </div>
             </div>*/}
+
+            <div className={styles.footer__switch}>
+              <span className="text16">
+                {theme === "light" ? "Светлая тема" : "Тёмная тема"}
+              </span>
+              <div className="switch">
+                <input
+                  type="checkbox"
+                  id="toggle-switch"
+                  checked={theme === "dark"}
+                  onChange={() =>
+                    setTheme(theme === "light" ? "dark" : "light")
+                  }
+                />
+                <label htmlFor="toggle-switch"></label>
+              </div>
+            </div>
           </div>
         </div>
       </div>

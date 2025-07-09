@@ -23,7 +23,7 @@
     justify-content: space-between;
     gap: 10px;
     width: 100%;
-    background: #FFF;
+    background: var(--color-white);
     padding: 20px 0 0px 0;
 
 }

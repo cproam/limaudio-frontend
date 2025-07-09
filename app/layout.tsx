@@ -11,6 +11,7 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import YandexMetrika from "@/components/YandexMetrika";
 import UtmSaver from "@/components/UtmSaver";
+import { ThemeProvider } from "./providers/ThemeProvider";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -34,13 +35,15 @@ export default function RootLayout({
           flexDirection: "column",
         }}
       >
-        <Suspense fallback={<div></div>}>
-          <Header />
-          <UtmSaver />
-        </Suspense>
-        {children}
-        <Footer />
-        <YandexMetrika />
+        <ThemeProvider>
+          <Suspense fallback={<div></div>}>
+            <Header />
+            <UtmSaver />
+          </Suspense>
+          {children}
+          <Footer />
+          <YandexMetrika />
+        </ThemeProvider>
       </body>
     </html>
   );

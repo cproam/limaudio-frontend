@@ -31,7 +31,8 @@
     "app/blog/[slug]/page.jsx",
     "test-views-count.js",
     "app/api/article/controllers/lifecycles.js",
-    "lib/yandexMetrika.js"
+    "lib/yandexMetrika.js",
+    "context/ThemeContext.js"
   ],
   "exclude": ["node_modules"]
 }

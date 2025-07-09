@@ -57,6 +57,7 @@ button {
 
 :root {
     --color-black1C: #1C1C1C;
+    --color-black: #000000;
     --color-black2C: #2C2C2C;
     --color-gray: #BEBEBE;
     --color-grayF1: #F1F1F1;
@@ -73,7 +74,31 @@ button {
     --color-sky-blue: #A7CAFF;
     --color-green: #2CAE35;
     --color-green66: #25D366;
+    --color-fff-000: #FFFFFF;
+    --color-f5-000: #F5F5F5;
+    --color-2C-fff: #2C2C2C;
+    --color-1C-fff: #1C1C1C;
+    --color-f8-000: #F8F8F8
 }
+
+.dark {
+    --color-fff-000: #000000;
+    --color-f5-000: #000000;
+    --color-1C-fff: #FFFFFF;
+    --color-2C-fff: #FFFFFF;
+    --color-f8-000: #000000
+}
+
+@media (prefers-color-scheme: dark) {
+    .light {
+        --color-fff-000: #FFFFFF;
+        --color-f5-000: #F5F5F5;
+        --color-1C-fff: #1C1C1C;
+        --color-2C-fff: #2C2C2C;
+        --color-f8-000: #F8F8F8
+    }
+}
+
 
 .container {
     max-width: 1232px;
@@ -190,6 +215,7 @@ input {
     font-family: "SFProText", "Arial", sans-serif;
     font-size: 16px;
     color: var(--color-black2C);
+    background: var(--color-white);
     padding-left: 10px;
     outline: none;
 }
@@ -399,11 +425,14 @@ textarea {
     margin-left: 0px;
 }
 
+
+
 @media (max-width: 1230px) {
     .headline-left {
         margin-left: 16px;
     }
 }
+
 
 
 @media screen and (max-width: 767px) {

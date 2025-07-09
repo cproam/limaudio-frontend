@@ -10,7 +10,7 @@
 
 .subscription__block {
     display: flex;
-    background-color: var(--color-grayF5);
+    background-color: var(--color-f5-000);
     padding: 22px 21px 17px 17px;
     border-radius: 20px;
     width: 100%
