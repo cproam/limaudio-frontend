@@ -1,21 +1,18 @@
 "use client";
-
-import { CSSProperties, useEffect, useState } from "react";
-import BlogCard from "../BlogCard";
+import { useEffect, useState } from "react";
 import { CardsResponse } from "@/types/card";
 import Headline from "@/app/UI/headline";
 import CardSkeleton from "../Loading/CardSkeleton";
+import BlogCard from "../BlogCard";
 
 export default function BrandArticles({
-  gridStyle,
-  paddingStyle,
-  headstyle,
+  slug,
+  brand,
 }: {
-  gridStyle?: string;
-  paddingStyle?: string;
-  headstyle?: CSSProperties;
+  slug?: string;
+  brand?: string;
 }) {
-  const [allCards, setAllCards] = useState<CardsResponse>({
+  const [allBrandsCards, setBrandsCards] = useState<CardsResponse>({
     data: [],
     meta: {
       pagination: {
@@ -30,22 +27,18 @@ export default function BrandArticles({
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const sortedCards = [...allCards.data]
-    .sort((a, b) => b.views - a.views)
-    .slice(0, 3);
 
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const res = await fetch("/api/blogs");
+        const res = await fetch(`/api/blogSimilar?slug=${slug}&brand=${brand}`);
         if (!res.ok) {
           const text = await res.text();
           throw new Error(text || "Ошибка при загрузке");
         }
 
         const cards = await res.json();
-
-        setAllCards(cards);
+        setBrandsCards(cards);
         setIsLoading(false);
       } catch (err: any) {
         setError(err.message);
@@ -53,26 +46,25 @@ export default function BrandArticles({
       }
     };
 
-    fetchCards();
+    if (slug && brand) {
+      fetchCards();
+    }
   }, []);
 
   return (
-    <div
-      className="container2"
-      style={{ marginTop: "30px", padding: paddingStyle }}
-    >
-      <Headline text="Cтатьи бренда" headstyle={headstyle} />
+    <div className="container2" style={{ marginTop: "50px" }}>
+      <Headline text="Другие статьи бренда" />
 
-      <div className="interes__card">
+      <div className="interes__card" style={{ marginTop: "30px" }}>
         {isLoading && <CardSkeleton heightPx="551px" />}
         {error && <div style={{ color: "red" }}>{error}</div>}
-        {!isLoading && !allCards && (
+        {!isLoading && !allBrandsCards && (
           <div style={{ fontSize: "40px", fontWeight: 600 }}>
             Нет доступных блогов
           </div>
         )}
-        <div className="cards_container" style={{ grid: gridStyle }}>
-          {sortedCards.map((card) => (
+        <div className="cards_container" style={{ grid: "" }}>
+          {allBrandsCards.data.map((card) => (
             <BlogCard key={card.id} card={card} type="small" />
           ))}
         </div>
