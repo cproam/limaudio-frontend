@@ -7,6 +7,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import styles from "./page.module.css";
 import { TEL, TELLINK, TG, WHATSAPP } from "@/lib/breadcrumbs";
 import { transliterate } from "transliteration";
+import { Switch } from "../Switch";
 
 export default function Header() {
   const [headerMenu, setHeaderMenu] = useState(false);
@@ -213,8 +214,8 @@ export default function Header() {
               </ul>
             </nav>
           </div>
-
           <ul className={styles.header__contacts}>
+            {" "}
             <li>
               <Link href={TELLINK}>{TEL}</Link>
             </li>
@@ -262,7 +263,8 @@ export default function Header() {
                   />
                 </svg>
               </Link>
-            </li>
+            </li>{" "}
+            <Switch />
           </ul>
         </div>
       </header>

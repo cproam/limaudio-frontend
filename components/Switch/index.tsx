@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import styles from "./page.module.css";
 
 export const Switch = () => {
   const { theme, setTheme } = useTheme();
@@ -13,19 +14,14 @@ export const Switch = () => {
   if (!mounted) return null;
 
   return (
-    <>
-      <span className="text16">
-        {theme === "light" ? "Светлая тема" : "Тёмная тема"}
-      </span>
-      <div className="switch">
-        <input
-          type="checkbox"
-          id="toggle-switch"
-          checked={theme === "dark"}
-          onChange={() => setTheme(theme === "light" ? "dark" : "light")}
-        />
-        <label htmlFor="toggle-switch"></label>
-      </div>
-    </>
+    <div className={styles.switch}>
+      <input
+        type="checkbox"
+        id="toggle-switch"
+        checked={theme === "dark"}
+        onChange={() => setTheme(theme === "light" ? "dark" : "light")}
+      />
+      <label htmlFor="toggle-switch"></label>
+    </div>
   );
 };
