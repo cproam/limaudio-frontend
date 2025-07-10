@@ -15,6 +15,7 @@ import BlockSimilarCard from "@/components/BlogSimilar/BlockSimilarCard";
 import Headline from "@/app/UI/headline";
 import { Metadata } from "next";
 import { transliterate } from "transliteration";
+import BrandArticles from "@/components/BrandArticles";
 
 interface PageProps {
   params: { slug: string };
@@ -179,6 +180,7 @@ export default async function BlogPostPage({ params }: any) {
                 topic={content.topics[0]?.title}
               />
             </div>
+            <BrandArticles slug={content.slug} brand={content.brand} />
           </div>
         </div>
       </section>

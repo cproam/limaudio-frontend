@@ -1,3 +1,4 @@
+/*
 import Link from "next/link";
 import styles from "./page.module.css";
 import { Card } from "@/types/card";
@@ -78,3 +79,4 @@ export default function BlogSimilarCard({ card }: CardItemProps) {
     </Link>
   );
 }
+*/

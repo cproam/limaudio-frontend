@@ -79,8 +79,8 @@ export default function BlockSimilarCard({
           key={card.id}
           card={{
             ...card,
-            formAdjective: card.formAdjective || "", // Provide defaults
-            formCategory: card.category.name || "",
+            formAdjective: card?.formAdjective || "",
+            formCategory: card.category?.name || "",
           }}
           type="small"
         />

@@ -14,6 +14,7 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const slug = searchParams.get("slug");
     const topic = searchParams.get("topic");
+    const brand = searchParams.get("brand");
 
     const sortParams: string[] = [];
     const filters: any = {};
@@ -29,6 +30,12 @@ export async function GET(req: NextRequest) {
     if (slug) {
       filters.slug = {
         $ne: slug,
+      };
+    }
+
+    if (brand) {
+      filters.brand = {
+        $eq: brand,
       };
     }
 
