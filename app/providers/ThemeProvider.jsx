@@ -14,7 +14,12 @@ export function ThemeProvider({ children }) {
   if (!mounted) return <>{children}</>;
 
   return (
-    <NextThemesProvider attribute="class" defaultTheme="system">
+    <NextThemesProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
       {children}
     </NextThemesProvider>
   );

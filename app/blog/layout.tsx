@@ -1,7 +1,7 @@
 import Brands from "@/components/Brands";
 import Subscription from "@/components/Subscription/Subscription";
 import ScrollBtn from "@/components/ScrollBtn";
-import PopularWrapper from "@/components/PopularWrapper";
+import BrandArticles from "@/components/BrandArticles";
 
 export default function BlogLayout({
   children,
@@ -11,7 +11,9 @@ export default function BlogLayout({
   return (
     <>
       {children}
+
       <Brands />
+      <BrandArticles />
       <Subscription />
       <ScrollBtn />
     </>
