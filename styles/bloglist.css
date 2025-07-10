@@ -10,10 +10,10 @@
 }
 
 .card {
-    background: var(--color-grayFA);
+    background: var(--color-FA-000);
     padding: 20px;
     border-radius: 20px;
-    color: var(--color-black1C);
+    color: var(--color-1C-fff);
 }
 
 .card__container-wide {
