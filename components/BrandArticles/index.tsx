@@ -55,18 +55,20 @@ export default function BrandArticles({
     <div className="container2" style={{ marginTop: "50px" }}>
       <Headline text="Другие статьи бренда" />
 
-      <div className="interes__card" style={{ marginTop: "30px" }}>
+      <div style={{ marginTop: "30px" }}>
         {isLoading && <CardSkeleton heightPx="551px" />}
         {error && <div style={{ color: "red" }}>{error}</div>}
-        {!isLoading && !allBrandsCards && (
+        {!isLoading && allBrandsCards.data.length === 0 && (
           <div style={{ fontSize: "40px", fontWeight: 600 }}>
             Нет доступных блогов
           </div>
         )}
-        <div className="cards_container" style={{ grid: "" }}>
-          {allBrandsCards.data.map((card) => (
-            <BlogCard key={card.id} card={card} type="small" />
-          ))}
+        <div className="interes__card">
+          <div className="cards_container" style={{ grid: "" }}>
+            {allBrandsCards.data.map((card) => (
+              <BlogCard key={card.id} card={card} type="small" />
+            ))}
+          </div>
         </div>
       </div>
     </div>
