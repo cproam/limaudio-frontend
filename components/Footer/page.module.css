@@ -110,14 +110,14 @@
     margin-right: 15px;
 }
 
-
+/*
 .footer__switch {
     display: flex;
     align-items: center;
     color: var(--color-grayF8);
     margin-top: auto;
 }
-
+*/
 
 
 @media (max-width: 1250px) {

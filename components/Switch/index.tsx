@@ -11,6 +11,14 @@ export const Switch = () => {
     setMounted(true);
   }, []);
 
+  const handleThemeChange = () => {
+    const scrollPosition = window.scrollY;
+    setTheme(theme === "light" ? "dark" : "light");
+    requestAnimationFrame(() => {
+      window.scrollTo(0, scrollPosition);
+    });
+  };
+
   if (!mounted) return null;
 
   return (
@@ -19,7 +27,7 @@ export const Switch = () => {
         type="checkbox"
         id="toggle-switch"
         checked={theme === "dark"}
-        onChange={() => setTheme(theme === "light" ? "dark" : "light")}
+        onChange={handleThemeChange}
       />
       <label htmlFor="toggle-switch"></label>
     </div>

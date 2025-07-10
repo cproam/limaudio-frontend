@@ -79,6 +79,7 @@ button {
     --color-2C-fff: #2C2C2C;
     --color-1C-fff: #1C1C1C;
     --color-f8-000: #F8F8F8;
+    --color-FA-000: #FAFAFA;
 }
 
 .dark {
@@ -87,6 +88,7 @@ button {
     --color-1C-fff: #FFFFFF;
     --color-2C-fff: #FFFFFF;
     --color-f8-000: #000000;
+    --color-FA-000: #000000;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -96,6 +98,7 @@ button {
         --color-1C-fff: #1C1C1C;
         --color-2C-fff: #2C2C2C;
         --color-f8-000: #F8F8F8;
+        --color-FA-000: #FAFAFA;
     }
 }
 
