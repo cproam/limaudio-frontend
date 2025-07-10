@@ -181,12 +181,16 @@ export default function Footer() {
                     </svg>
                   </Link>
                 </li>
+                <li>
+                  {" "}
+                  <Switch />
+                </li>
               </ul>
             </ul>
-
+            {/*
             <div className={styles.footer__switch}>
-              <Switch />
-            </div>
+              <></>
+            </div>*/}
           </div>
         </div>
       </div>
