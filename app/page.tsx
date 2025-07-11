@@ -1,7 +1,5 @@
+import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
-import Subscription from "@/components/Subscription/Subscription";
-import Brands from "@/components/Brands";
-import PopularArticles from "@/components/PopularArticles";
 import ScrollBtn from "@/components/ScrollBtn";
 import BlogMainWrapper from "@/components/BlogMainPageWrapper";
 import PopularWrapper from "@/components/PopularWrapper";
@@ -20,6 +18,22 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   };
 }
+
+const PopularArticles = dynamic(() => import("@/components/PopularArticles"), {
+  ssr: true,
+  loading: () => <div>Loading Popular Articles...</div>,
+});
+const Brands = dynamic(() => import("@/components/Brands"), {
+  ssr: true,
+  loading: () => <div>Загрузка...</div>,
+});
+const Subscription = dynamic(
+  () => import("@/components/Subscription/Subscription"),
+  {
+    ssr: true,
+    loading: () => <div>Загрузка...</div>,
+  }
+);
 
 export default function Home() {
   return (
