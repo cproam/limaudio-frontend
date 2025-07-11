@@ -28,7 +28,7 @@ export default function Brands() {
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
-
+  /*
   useEffect(() => {
     const fetchCards = async () => {
       try {
@@ -40,6 +40,49 @@ export default function Brands() {
 
         const cards = await res.json();
         const card = cards.data;
+
+        setAllCards(card);
+        setIsLoading(false);
+      } catch (err: any) {
+        setError(err.message);
+        setIsLoading(false);
+      }
+    };
+
+    fetchCards();
+  }, []);*/
+
+  useEffect(() => {
+    const cacheKey = "brands_data";
+    const ttl = 1000 * 60 * 60 * 24; // 24 часа
+    const cached = localStorage.getItem(cacheKey);
+    const cachedData = cached ? JSON.parse(cached) : null;
+
+    if (
+      cachedData &&
+      cachedData.lastFetched &&
+      Date.now() - cachedData.lastFetched < ttl
+    ) {
+      setAllCards(cachedData.data);
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchCards = async () => {
+      try {
+        const res = await fetch("/api/brands");
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(text || "Ошибка при загрузке");
+        }
+
+        const cards = await res.json();
+        const card = cards.data;
+
+        localStorage.setItem(
+          cacheKey,
+          JSON.stringify({ data: card, lastFetched: Date.now() })
+        );
 
         setAllCards(card);
         setIsLoading(false);
