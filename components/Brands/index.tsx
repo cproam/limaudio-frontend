@@ -99,7 +99,11 @@ export default function Brands() {
     <section className={styles.brands}>
       <div className="container">
         <div className={styles.brand_head}>
-          <Headline text={"Бренды"} link={"/brands"} />
+          <Headline
+            text={"Бренды"}
+            link={"/brands"}
+            stylecss={{ color: "var(--color-1C-fff)" }}
+          />
         </div>
         {error && <div style={{ color: "red" }}>{error}</div>}
         {!isLoading && allCards.length === 0 && (

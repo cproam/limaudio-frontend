@@ -4,6 +4,7 @@ import BlogCard from "../BlogCard";
 import { Card, CardsResponse } from "@/types/card";
 import { useSearchParams } from "next/navigation";
 import CardSkeleton from "../Loading/CardSkeleton";
+import Headline from "@/app/UI/headline";
 
 type GroupedCard = {
   type: "big" | "small";
@@ -89,7 +90,13 @@ export default function BlogMainPage() {
   return (
     <>
       <div className="container2" style={{ marginTop: "20px" }}>
-        <div className="cards_container">
+        <Headline
+          text={"Блог"}
+          left={true}
+          link="/blog"
+          stylecss={{ color: "var(--color-1C-fff)" }}
+        />
+        <div className="cards_container" style={{ marginTop: "20px" }}>
           {visibleGrouped.map((group, index) => (
             <div
               key={index}
