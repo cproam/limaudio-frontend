@@ -51,6 +51,16 @@ export default function BrandArticles({
     }
   }, []);
 
+  console.log(allBrandsCards);
+
+  if (allBrandsCards === undefined && allBrandsCards.data.length === 0) {
+    return null;
+  }
+
+  if (!isLoading && allBrandsCards.data.length === 0) {
+    return null;
+  }
+
   return (
     <div className="container2" style={{ marginTop: "50px" }}>
       <Headline text="Другие статьи бренда" />
@@ -58,11 +68,7 @@ export default function BrandArticles({
       <div style={{ marginTop: "30px" }}>
         {isLoading && <CardSkeleton heightPx="551px" />}
         {error && <div style={{ color: "red" }}>{error}</div>}
-        {!isLoading && allBrandsCards.data.length === 0 && (
-          <div style={{ fontSize: "35px", fontWeight: 600 }}>
-            Нет доступных блогов
-          </div>
-        )}
+
         <div className="interes__card">
           <div className="cards_container" style={{ grid: "" }}>
             {allBrandsCards.data.map((card) => (

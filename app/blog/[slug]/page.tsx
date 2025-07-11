@@ -88,8 +88,6 @@ export default async function BlogPostPage({ params }: any) {
 
   if (!content) return notFound();
 
-  console.log(content);
-
   return (
     <>
       <div className="container" style={{ width: "100%" }}>
