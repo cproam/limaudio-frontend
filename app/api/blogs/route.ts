@@ -81,7 +81,7 @@ export async function GET(req: NextRequest) {
           },
         },
         pagination: {
-          pageSize: 50, // Reduced pageSize for faster initial load
+          pageSize: 50,
           page: 1,
         },
       },
@@ -93,7 +93,7 @@ export async function GET(req: NextRequest) {
         Accept: "application/json",
         Authorization: `Bearer ${process.env.TOKEN}`,
       },
-      next: { revalidate: 60 }, // Cache for 60 seconds
+      next: { revalidate: 60 },
     });
 
     if (!res.ok) {

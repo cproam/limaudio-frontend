@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useMemo, useCallback, useRef } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import BlogCard from "../BlogCard";
 import { Card, CardsResponse } from "@/types/card";
 import { useSearchParams } from "next/navigation";
@@ -62,7 +62,6 @@ export default function BlogMainPage() {
   const [visibleGroups, setVisibleGroups] = useState(INITIAL_VISIBLE_GROUPS);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const observerRef = useRef<IntersectionObserver | null>(null); // For lazy loading
 
   // Memoize groupedCards to prevent recalculation on every render
   const groupedCards = useMemo(
@@ -77,31 +76,6 @@ export default function BlogMainPage() {
     }, 300),
     []
   );
-
-  // Intersection Observer for lazy loading additional groups
-  useEffect(() => {
-    if (visibleGroups >= groupedCards.length || isLoading) return;
-
-    const lastGroupElement = document.querySelector(".row:last-of-type");
-    if (!lastGroupElement) return;
-
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          showMore();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    observerRef.current.observe(lastGroupElement);
-
-    return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
-    };
-  }, [visibleGroups, groupedCards.length, isLoading, showMore]);
 
   useEffect(() => {
     const fetchCards = async () => {
