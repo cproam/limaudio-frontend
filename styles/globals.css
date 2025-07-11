@@ -81,6 +81,7 @@ button {
     --color-f8-000: #F8F8F8;
     --color-FA-000: #FAFAFA;
     --color-56-fff: #F4F4F4;
+    --color-F4-fff: #F4F4F4;
     --color-blue-l: #0055CC
 }
 
@@ -91,7 +92,7 @@ button {
     --color-2C-fff: #FFFFFF;
     --color-f8-000: #000000;
     --color-FA-000: #000000;
-    --color-56-fff: #565656;
+    --color-F4-fff: #565656;
     --color-blue-l: #A7CAFF;
 }
 
