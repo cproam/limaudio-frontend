@@ -53,11 +53,11 @@ export default function BrandArticles({
 
   console.log(allBrandsCards);
 
-  if (allBrandsCards === undefined && allBrandsCards.data.length === 0) {
+  if (allBrandsCards === undefined) {
     return null;
   }
 
-  if (!isLoading && allBrandsCards.data.length === 0) {
+  if (allBrandsCards.data.length === 0) {
     return null;
   }
 
