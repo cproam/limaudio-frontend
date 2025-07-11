@@ -88,47 +88,34 @@ export default function BlogMainPage() {
   const showMore = () => setVisibleGroups((prev) => prev + 3);
 
   return (
-    <>
-      <div className="container2" style={{ marginTop: "20px" }}>
-        <Headline
-          text={"Блог"}
-          left={true}
-          link="/blog"
-          stylecss={{ color: "var(--color-1C-fff)" }}
-        />
-        <div className="cards_container" style={{ marginTop: "20px" }}>
-          {visibleGrouped.map((group, index) => (
-            <div
-              key={index}
-              className={`row ${
-                group.type === "big" ? "big-row" : "small-row"
-              }`}
-            >
-              {group.cards.map((card, i) => (
-                <BlogCard key={i} card={card} type={group.type} />
-              ))}
-            </div>
-          ))}
-          {isLoading && <CardSkeleton heightPx="1317px" />}
-          {error && <div style={{ color: "red" }}>{error}</div>}
-          {!isLoading && allCards.data.length === 0 && (
-            <div style={{ fontSize: "40px", fontWeight: 600 }}>
-              Нет доступных блогов
-            </div>
-          )}
-        </div>
-        {visibleGroups < groupedCards.length && (
-          <div className="show-more-wrapper">
-            <button
-              onClick={showMore}
-              className="showbtn text"
-              aria-label="Показать ещё"
-            >
-              Показать еще
-            </button>
+    <div className="container2" style={{ marginTop: "20px" }}>
+      <Headline text={"Блоги"} link={"/blog"} left={true} />
+      <div className="cards_container" style={{ marginTop: "20px" }}>
+        {visibleGrouped.map((group, index) => (
+          <div
+            key={index}
+            className={`row ${group.type === "big" ? "big-row" : "small-row"}`}
+          >
+            {group.cards.map((card, i) => (
+              <BlogCard key={i} card={card} type={group.type} />
+            ))}
+          </div>
+        ))}
+        {isLoading && <CardSkeleton heightPx="1317px" />}
+        {error && <div style={{ color: "red" }}>{error}</div>}
+        {!isLoading && allCards.data.length === 0 && (
+          <div style={{ fontSize: "40px", fontWeight: 600 }}>
+            Нет доступных блогов
           </div>
         )}
       </div>
-    </>
+      {visibleGroups < groupedCards.length && (
+        <div className="show-more-wrapper">
+          <button onClick={showMore} className="showbtn text">
+            Показать еще
+          </button>
+        </div>
+      )}
+    </div>
   );
 }

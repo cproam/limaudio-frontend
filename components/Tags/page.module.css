@@ -8,8 +8,8 @@
 .popular__sort>li>a {
     display: flex;
     align-items: center;
-    color: var(--color-black2C);
-    background-color: var(--color-grayF4);
+    color: var(--color-2C-fff);
+    background-color: var(--color-56-fff);
     padding-right: 10px;
     border-radius: 20px;
     height: 32px;
