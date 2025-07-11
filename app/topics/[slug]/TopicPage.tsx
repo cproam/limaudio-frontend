@@ -73,7 +73,7 @@ export default function TopicPage({
 
         {error && <div style={{ color: "red" }}>{error}</div>}
         {!error && articles.length === 0 && (
-          <div style={{ fontSize: "40px", fontWeight: 600 }}>
+          <div style={{ fontSize: "35px", fontWeight: 600 }}>
             Нет доступных блогов
           </div>
         )}

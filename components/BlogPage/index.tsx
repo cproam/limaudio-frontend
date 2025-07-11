@@ -93,7 +93,7 @@ export default function BlogPage() {
           </>
         )}
         {!isLoading && articles.length === 0 && (
-          <div style={{ fontSize: "40px", fontWeight: 600, height: "20px" }}>
+          <div style={{ fontSize: "35px", fontWeight: 600, height: "20px" }}>
             Нет доступных блогов
           </div>
         )}

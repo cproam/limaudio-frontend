@@ -89,7 +89,12 @@ export default function BlogMainPage() {
 
   return (
     <div className="container2" style={{ marginTop: "20px" }}>
-      <Headline text={"Блоги"} link={"/blog"} left={true} />
+      <Headline
+        text={"Блоги"}
+        link={"/blog"}
+        left={true}
+        stylecss={{ color: "var(--color-1C-fff)" }}
+      />
       <div className="cards_container" style={{ marginTop: "20px" }}>
         {visibleGrouped.map((group, index) => (
           <div
@@ -104,7 +109,7 @@ export default function BlogMainPage() {
         {isLoading && <CardSkeleton heightPx="1317px" />}
         {error && <div style={{ color: "red" }}>{error}</div>}
         {!isLoading && allCards.data.length === 0 && (
-          <div style={{ fontSize: "40px", fontWeight: 600 }}>
+          <div style={{ fontSize: "35px", fontWeight: 600 }}>
             Нет доступных блогов
           </div>
         )}

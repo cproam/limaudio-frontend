@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     color: var(--color-2C-fff);
-    background-color: var(--color-56-fff);
+    background-color: var(--color-F4-fff);
     padding-right: 10px;
     border-radius: 20px;
     height: 32px;
@@ -25,5 +25,5 @@
 }
 
 .selected a span {
-    color: var(--color-blue);
+    color: var(--color-blue-l);
 }

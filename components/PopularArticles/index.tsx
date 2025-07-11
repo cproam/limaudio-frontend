@@ -61,13 +61,13 @@ export default function PopularArticles({
       className="container2"
       style={{ marginTop: "30px", padding: paddingStyle }}
     >
-      <Headline text="Популярные статьи" headstyle={headstyle} />
+      <Headline text="Популярные статьи" headstyle={headstyle} left={true} />
 
       <div className="interes__card" style={{ marginTop: "20px" }}>
         {isLoading && <CardSkeleton heightPx="551px" />}
         {error && <div style={{ color: "red" }}>{error}</div>}
         {!isLoading && !allCards && (
-          <div style={{ fontSize: "40px", fontWeight: 600 }}>
+          <div style={{ fontSize: "35px", fontWeight: 600 }}>
             Нет доступных блогов
           </div>
         )}

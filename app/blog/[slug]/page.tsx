@@ -88,6 +88,8 @@ export default async function BlogPostPage({ params }: any) {
 
   if (!content) return notFound();
 
+  console.log(content);
+
   return (
     <>
       <div className="container" style={{ width: "100%" }}>
@@ -122,7 +124,6 @@ export default async function BlogPostPage({ params }: any) {
               </svg>
               <span>{content?.views}</span>
             </div>
-            {/*
             <div>
               <svg
                 width="18"
@@ -138,8 +139,8 @@ export default async function BlogPostPage({ params }: any) {
                   fill="#0055CC"
                 />
               </svg>
-              <span>{content.comments.count}</span>
-            </div>*/}
+              <span>{content?.comments.length}</span>
+            </div>
           </div>
           <div className={styles.blog__container}>
             <h1 className="text-h2">{content.title}</h1>
