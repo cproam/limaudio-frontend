@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const PopularArticles = dynamic(() => import("@/components/PopularArticles"), {
   ssr: true,
-  loading: () => <div>Loading Popular Articles...</div>,
+  loading: () => <div>Загрузка...</div>,
 });
 const Brands = dynamic(() => import("@/components/Brands"), {
   ssr: true,
