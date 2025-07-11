@@ -51,8 +51,6 @@ export default function BrandArticles({
     }
   }, []);
 
-  console.log(allBrandsCards);
-
   if (allBrandsCards === undefined) {
     return null;
   }
