@@ -3,7 +3,6 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import { ModalQuestions } from "../Modals/ModalQuestions";
 import { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
 import { TEL, TELLINK, TG, WHATSAPP } from "@/lib/breadcrumbs";
 import { Switch } from "../Switch";
 
@@ -12,6 +11,20 @@ export default function Footer() {
   const [topics, setTopics] = useState<any>();
 
   useEffect(() => {
+    const cacheKey = "topics_data";
+    const ttl = 1000 * 60 * 60 * 24;
+    const cached = localStorage.getItem(cacheKey);
+    const cachedData = cached ? JSON.parse(cached) : null;
+
+    if (
+      cachedData &&
+      cachedData.lastFetched &&
+      Date.now() - cachedData.lastFetched < ttl
+    ) {
+      setTopics(cachedData.data);
+      return;
+    }
+
     const fetchCards = async () => {
       try {
         const res = await fetch("/api/topic");
@@ -21,7 +34,14 @@ export default function Footer() {
         }
 
         const cards = await res.json();
-        setTopics(cards.data);
+        const topics = cards.data;
+
+        localStorage.setItem(
+          cacheKey,
+          JSON.stringify({ data: topics, lastFetched: Date.now() })
+        );
+
+        setTopics(topics);
       } catch (err: any) {
         console.log(err);
       }
@@ -30,7 +50,6 @@ export default function Footer() {
     fetchCards();
   }, []);
 
-  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -182,15 +201,10 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  {" "}
                   <Switch />
                 </li>
               </ul>
             </ul>
-            {/*
-            <div className={styles.footer__switch}>
-              <></>
-            </div>*/}
           </div>
         </div>
       </div>
