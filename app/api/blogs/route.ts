@@ -2,10 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import qs from "qs";
 
 export async function GET(req: NextRequest) {
+  // Validate environment variables
   if (!process.env.API_URL || !process.env.TOKEN) {
-    console.error("API_URL или TOKEN не заданы в .env");
+    console.error("API_URL or TOKEN not set in .env");
     return NextResponse.json(
-      { error: "Неверная конфигурация сервера" },
+      { error: "Server configuration error" },
       { status: 500 }
     );
   }
@@ -19,28 +20,23 @@ export async function GET(req: NextRequest) {
     const topic = searchParams.get("topic");
     const category = searchParams.get("category");
 
+    // Optimize sorting logic
     const sortParams: string[] = [];
-
-    // Сортировка по дате
     if (sortByDate === "asc" || sortByDate === "desc") {
       sortParams.push(`createdAt:${sortByDate}`);
-    }
-
-    // Сортировка по популярности
-    if (sortByPopularity === "popular" || sortByPopularity === "not_popular") {
+    } else if (
+      sortByPopularity === "popular" ||
+      sortByPopularity === "not_popular"
+    ) {
       sortParams.push(
         `views:${sortByPopularity === "popular" ? "desc" : "asc"}`
       );
+    } else {
+      sortParams.push("createdAt:desc"); // Default sort
     }
 
-    // Сортировка по умолчанию
-    if (sortParams.length === 0) {
-      sortParams.push("createdAt:desc");
-    }
-
+    // Optimize filters
     const filters: any = {};
-
-    // Поиск по заголовку или описанию
     if (searchQuery) {
       filters.$or = [
         { title: { $containsi: searchQuery } },
@@ -49,53 +45,23 @@ export async function GET(req: NextRequest) {
       ];
     }
 
-    if (category) {
-      filters.category = {
-        name: {
-          $eq: category,
-        },
-      };
-    }
-
-    // Фильтрация по тегам
     if (tags.length > 0) {
       filters.$or = filters.$or || [];
       filters.$or.push(
-        {
-          topics: {
-            title: {
-              $in: tags,
-            },
-          },
-        },
-        {
-          category: {
-            name: {
-              $in: tags,
-            },
-          },
-        }
+        { topics: { title: { $in: tags } } },
+        { category: { name: { $in: tags } } }
       );
     }
 
-    // Фильтрация по topic
     if (topic) {
-      filters.topics = {
-        title: {
-          $eq: topic,
-        },
-      };
+      filters.topics = { title: { $eq: topic } };
     }
 
-    // Фильтрация по category
     if (category) {
-      filters.category = {
-        name: {
-          $eq: category, // Точное совпадение с категорией
-        },
-      };
+      filters.category = { name: { $eq: category } };
     }
 
+    // Optimize query with smaller pageSize for initial load
     const query = qs.stringify(
       {
         sort: sortParams,
@@ -110,14 +76,12 @@ export async function GET(req: NextRequest) {
               title: {},
               formCategory: {},
               formAdjective: {},
-              image: {
-                fields: ["url"],
-              },
+              image: { fields: ["url"] },
             },
           },
         },
         pagination: {
-          pageSize: 500,
+          pageSize: 50,
           page: 1,
         },
       },
@@ -134,17 +98,16 @@ export async function GET(req: NextRequest) {
 
     if (!res.ok) {
       const text = await res.text();
-      console.error(`Ошибка API: ${res.status} - ${text}`);
+      console.error(`API Error: ${res.status} - ${text}`);
       return NextResponse.json({ error: text }, { status: res.status });
     }
 
     const data = await res.json();
-
     return NextResponse.json(data);
   } catch (error: any) {
-    console.error("Ошибка при получении данных:", error);
+    console.error("Error fetching data:", error.message);
     return NextResponse.json(
-      { error: "Ошибка при получении данных" },
+      { error: "Failed to fetch data", details: error.message },
       { status: 500 }
     );
   }

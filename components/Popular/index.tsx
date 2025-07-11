@@ -243,6 +243,21 @@ export default function Popular() {
   }, [tags]);
 
   useEffect(() => {
+    const cacheKey = "topics_data";
+    const ttl = 1000 * 60 * 60 * 24;
+    const cached = localStorage.getItem(cacheKey);
+    const cachedData = cached ? JSON.parse(cached) : null;
+
+    if (
+      cachedData &&
+      cachedData.lastFetched &&
+      Date.now() - cachedData.lastFetched < ttl
+    ) {
+      setTopics(cachedData.data);
+      setIsLoadingTags(false);
+      return;
+    }
+
     const fetchCards = async () => {
       try {
         const res = await fetch("/api/topic");
@@ -253,10 +268,18 @@ export default function Popular() {
 
         const cards = await res.json();
         const topics = cards.data;
+
+        localStorage.setItem(
+          cacheKey,
+          JSON.stringify({ data: topics, lastFetched: Date.now() })
+        );
+
         setTopics(topics);
         setIsLoadingTags(false);
       } catch (err: any) {
         console.log(err);
+        setError(err.message);
+        setIsLoadingTags(false);
       }
     };
 
