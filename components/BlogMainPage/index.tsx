@@ -88,7 +88,7 @@ export default function BlogMainPage() {
   const showMore = () => setVisibleGroups((prev) => prev + 3);
 
   return (
-    <div className="container2" style={{ marginTop: "20px" }}>
+    <div className="container3" style={{ marginTop: "20px" }}>
       <Headline
         text={"Блоги"}
         link={"/blog"}
