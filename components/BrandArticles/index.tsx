@@ -28,6 +28,9 @@ export default function BrandArticles({
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  console.log(slug);
+  console.log(brand);
+
   useEffect(() => {
     const fetchCards = async () => {
       try {
@@ -61,7 +64,7 @@ export default function BrandArticles({
 
   return (
     <div className="container2" style={{ marginTop: "50px" }}>
-      <Headline text="Другие статьи бренда" />
+      <Headline text="Другие статьи бренда" left={true} />
 
       <div style={{ marginTop: "30px" }}>
         {isLoading && <CardSkeleton heightPx="551px" />}

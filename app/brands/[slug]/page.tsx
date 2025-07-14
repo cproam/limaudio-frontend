@@ -8,6 +8,7 @@ import PopularArticles from "@/components/PopularArticles";
 import { getBrandsBySlug } from "@/app/api/brands/api";
 import BlogMainPageWrapper from "@/components/BlogMainPageWrapper";
 import { Metadata } from "next";
+import BrandArticles from "@/components/BrandArticles";
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
   const content: any = await getBrandsBySlug(params.slug);
@@ -36,6 +37,7 @@ export default async function BrandsPage({ params }: any) {
     },
   ];
   if (!content) return notFound();
+  console.log(content);
   return (
     <>
       <div className="container" style={{ width: "100%" }}>
@@ -45,8 +47,10 @@ export default async function BrandsPage({ params }: any) {
       <div style={{ display: "none" }}>
         <BlogMainPageWrapper />
       </div>
+      <BrandArticles slug={content.slug} brand={content.title} />
       <PopularArticles />
       <Subscription />
+
       <ScrollBtn />
     </>
   );
