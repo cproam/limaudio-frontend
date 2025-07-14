@@ -19,20 +19,20 @@ export default function Headline({
     <>
       {link ? (
         <Link href={link} style={{ color: "var(--color-black1C)" }}>
-          <h2
+          <div
             className={`text-h3-bold ${left ? "headline-left" : ""}`}
             style={{ ...stylecss, ...headstyle }}
           >
             {text}
-          </h2>
+          </div>
         </Link>
       ) : (
-        <h2
+        <div
           className={`text-h3-bold ${left ? "headline-left" : ""}`}
           style={{ ...stylecss, ...headstyle }}
         >
           {text}
-        </h2>
+        </div>
       )}
     </>
   );

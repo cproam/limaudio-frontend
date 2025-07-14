@@ -24,7 +24,7 @@ export default function Share({ shareUrl }: ShareProps) {
 
   return (
     <div className={`text-h3-bold ${styles.blog__share}`}>
-      <h3>Поделиться статьёй:</h3>
+      <div className="text-h3-bold">Поделиться статьёй:</div>
       <div className={styles.share_social}>
         {/* Telegram */}
         <a href={shareLinks.telegram} target="_blank" rel="noopener noreferrer">

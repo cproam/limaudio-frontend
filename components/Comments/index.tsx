@@ -141,11 +141,11 @@ export default function Comments({
 
   return (
     <div className={styles.comments}>
-      <h3 className="text-h3-bold">
+      <div className="text-h3-bold">
         {commentsLength === 0
           ? "Комментариев нет"
           : `Комментарии (${commentsLength})`}
-      </h3>
+      </div>
       <div className={styles.comments__cards}>
         {topLevelComments.map((comment) =>
           comment?.id ? (
@@ -239,7 +239,7 @@ export default function Comments({
           className={`${styles.comments__send} ${styles.comments__card}`}
           id="reply"
         >
-          <h3 className="text-h3-bold">Оставить комментарий</h3>
+          <div className="text-h3-bold">Оставить комментарий</div>
           <form className={styles.comments__send__form} onSubmit={handleSubmit}>
             <div className={styles.comments__send__form_group}>
               <label className="text-small" htmlFor="name">
