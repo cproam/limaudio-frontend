@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import PhoneInput from "@/utils/telMask";
 import { useRouter } from "next/navigation";
 import { Info } from "../Modals/info";
+import { trackGoal } from "@/components/YandexMetrika";
 
 interface ApplicationFormProps {
   form?: string;
@@ -66,6 +67,7 @@ export default function ApplicationForm({
       });
 
       if (res.ok) {
+        trackGoal("goalLeads");
         router.push(`/thanks?name=${encodeURIComponent(name)}`);
       }
       if (!res.ok) throw new Error("Ошибка отправки");

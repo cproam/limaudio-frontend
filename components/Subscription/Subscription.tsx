@@ -1,8 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
 import { Info } from "../Modals/info";
+import { trackGoal } from "@/components/YandexMetrika";
 
 export default function Subscription() {
   const [email, setEmail] = useState("");
@@ -32,6 +33,7 @@ export default function Subscription() {
 
       if (res.ok) {
         setError(false);
+        trackGoal("goalSubscribe");
         setInfo({ message: "Вы успешно подписаны", color: "black" });
         setEmail("");
       } else {

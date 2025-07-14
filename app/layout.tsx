@@ -1,4 +1,5 @@
 import { Roboto } from "next/font/google";
+import Script from "next/script";
 import "./../styles/globals.css";
 import "./../styles/search-menu.css";
 import "./../styles/blogmainpage.css";
@@ -26,6 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
+      <head>{/* Add meta tags or other head elements as needed */}</head>
       <body
         className={roboto.className}
         style={{
@@ -44,6 +46,22 @@ export default function RootLayout({
           <Footer />
           <YandexMetrika />
         </ThemeProvider>
+        <Script
+          id="yandex-metrika"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+              m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+              (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+              ym(104563216, "init", {
+                clickmap: true,
+                trackLinks: true,
+                accurateTrackBounce: true
+              });
+            `,
+          }}
+        />
       </body>
     </html>
   );
