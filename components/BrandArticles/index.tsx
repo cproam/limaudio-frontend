@@ -28,9 +28,6 @@ export default function BrandArticles({
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  console.log(slug);
-  console.log(brand);
-
   useEffect(() => {
     const fetchCards = async () => {
       try {
