@@ -7,7 +7,7 @@ export const Info: React.FC<{
   colors?: string;
   title?: string;
 }> = ({ res, colors }) => {
-  const [showInfo, setShowInfo] = useState(false);
+  const [showInfo, setShowInfo] = useState(true);
 
   useEffect(() => {
     if (res) {

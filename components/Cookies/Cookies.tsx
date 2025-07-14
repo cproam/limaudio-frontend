@@ -4,27 +4,25 @@ import styles from "./page.module.css";
 import Link from "next/link";
 
 export default function Cookies() {
-  const [isOpen, setIsOpen] = useState(false); // Modal visibility state
-  const [isClosing, setIsClosing] = useState(false); // Track animation state
-  const [showSettings, setShowSettings] = useState(false); // Toggle settings panel
+  const [isOpen, setIsOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
   const [cookiePreferences, setCookiePreferences] = useState({
-    essential: true, // Always enabled
+    essential: true,
     analytics: false,
     marketing: false,
   });
-  const modalRef = useRef<HTMLDivElement>(null); // Explicitly type as HTMLDivElement
+  const modalRef = useRef<HTMLDivElement>(null);
 
-  // Check localStorage on mount
   useEffect(() => {
     const hasConsented = localStorage.getItem("cookieConsent");
     if (!hasConsented) {
-      setIsOpen(true); // Show modal if no consent
+      setIsOpen(true);
     } else {
-      setCookiePreferences(JSON.parse(hasConsented)); // Load saved preferences
+      setCookiePreferences(JSON.parse(hasConsented));
     }
   }, []);
 
-  // Focus trapping
   useEffect(() => {
     if (isOpen && modalRef.current) {
       const focusableElements = modalRef.current.querySelectorAll(
@@ -48,7 +46,7 @@ export default function Cookies() {
       };
 
       modalRef.current.addEventListener("keydown", handleKeyDown);
-      firstElement?.focus(); // Focus first element when modal opens
+      firstElement?.focus();
 
       return () =>
         modalRef.current?.removeEventListener("keydown", handleKeyDown);
@@ -60,8 +58,8 @@ export default function Cookies() {
     setTimeout(() => {
       setIsOpen(false);
       setIsClosing(false);
-      setShowSettings(false); // Reset settings panel
-    }, 300); // Match animation duration (0.3s)
+      setShowSettings(false);
+    }, 300);
   };
 
   const handleAcceptAll = () => {

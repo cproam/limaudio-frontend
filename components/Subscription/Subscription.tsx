@@ -98,7 +98,6 @@ export default function Subscription() {
               </svg>
             </button>
           </form>
-          {info && <Info res={info.message} colors={info.color} />}
 
           <div className="text-small">
             <span>
@@ -107,7 +106,8 @@ export default function Subscription() {
               <Link href="/polytic">персональных данных</Link>
             </span>
           </div>
-        </div>
+        </div>{" "}
+        {info && <Info res={info.message} colors={info.color} />}
       </div>
     </section>
   );
