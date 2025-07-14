@@ -13,6 +13,7 @@ import Footer from "@/components/Footer/Footer";
 import YandexMetrika from "@/components/YandexMetrika";
 import UtmSaver from "@/components/UtmSaver";
 import { ThemeProvider } from "./providers/ThemeProvider";
+import Cookies from "@/components/Cookies/Cookies";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -27,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <head>{/* Add meta tags or other head elements as needed */}</head>
+      <head></head>
       <body
         className={roboto.className}
         style={{
@@ -45,6 +46,7 @@ export default function RootLayout({
           {children}
           <Footer />
           <YandexMetrika />
+          <Cookies />
         </ThemeProvider>
         <Script
           id="yandex-metrika"
