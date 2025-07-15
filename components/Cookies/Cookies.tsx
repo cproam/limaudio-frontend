@@ -87,7 +87,11 @@ export default function Cookies() {
 
   if (!isOpen) {
     return (
-      <button onClick={handleOpen} className="blogbtnblue text20">
+      <button
+        onClick={handleOpen}
+        className="blogbtnblue text20"
+        style={{ borderRadius: 0 }}
+      >
         Открыть настройки куки
       </button>
     );
@@ -123,42 +127,44 @@ export default function Cookies() {
           {showSettings ? (
             <div className={styles.settingsPanel}>
               <h3>Настройте ваши предпочтения</h3>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={cookiePreferences.essential}
-                  disabled
-                />
-                Необходимые куки (всегда включены)
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={cookiePreferences.analytics}
-                  onChange={(e) =>
-                    setCookiePreferences({
-                      ...cookiePreferences,
-                      analytics: e.target.checked,
-                    })
-                  }
-                />
-                Аналитические куки
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={cookiePreferences.marketing}
-                  onChange={(e) =>
-                    setCookiePreferences({
-                      ...cookiePreferences,
-                      marketing: e.target.checked,
-                    })
-                  }
-                />
-                Маркетинговые куки
-              </label>
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={cookiePreferences.essential}
+                    disabled
+                  />
+                  Технические, всегда активны
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={cookiePreferences.analytics}
+                    onChange={(e) =>
+                      setCookiePreferences({
+                        ...cookiePreferences,
+                        analytics: e.target.checked,
+                      })
+                    }
+                  />
+                  Аналитические куки
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={cookiePreferences.marketing}
+                    onChange={(e) =>
+                      setCookiePreferences({
+                        ...cookiePreferences,
+                        marketing: e.target.checked,
+                      })
+                    }
+                  />
+                  Маркетинговые куки
+                </label>
+              </div>
               <button
-                className={`${styles.save_btn} blogbtnblue text20`}
+                className={`${styles.accept_all} blogbtnblue text20`}
                 onClick={handleSaveSettings}
               >
                 Сохранить настройки

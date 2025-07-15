@@ -23,6 +23,21 @@
 
 }
 
+.settingsPanel>h3 {
+    margin: 10px 0;
+}
+
+.settingsPanel>div {
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.settingsPanel>div>label>input {
+    margin-right: 10px;
+}
+
 @keyframes scaleDown {
     0% {
         transform: translateY(0);
@@ -59,7 +74,7 @@
     padding: 10px;
 }
 
-@media (max-width: 550px) {
+@media (max-width: 600px) {
     .cookiesModal_btn {
         flex-direction: column;
         justify-content: center;
@@ -67,6 +82,12 @@
 
     .accept_all {
         margin: 5px 0;
+    }
+
+    .settingsPanel>div {
+        display: flex;
+        justify-content: start;
+        flex-direction: column;
     }
 
 }
