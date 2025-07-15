@@ -181,7 +181,7 @@ export default function Cookies() {
               </p>
               <div className={styles.cookiesModal_btn}>
                 <button
-                  className={`${styles.cancel_btn} blogbtnblue text20`}
+                  className={`${styles.cancel_btn} text20`}
                   onClick={() => setShowSettings(true)}
                 >
                   Настроить
