@@ -90,7 +90,7 @@ export default function ApplicationForm({
 
   return (
     <div className={styles.application}>
-      <h2 className="text-h2">Оставьте заявку</h2>
+      <div className="text-h2">Оставьте заявку</div>
       <p>
         Мы поможем подобрать {formAdjective} {form}
       </p>
@@ -120,9 +120,9 @@ export default function ApplicationForm({
             loading="lazy"
           />
           <div className={styles.form__expert}>
-            <h3 className="text" style={{ fontWeight: "600" }}>
+            <div className="text" style={{ fontWeight: "600" }}>
               Айрат Насыбуллин
-            </h3>
+            </div>
             <p className="text-small">руководитель отдела Hi-END AV</p>
           </div>
         </div>
