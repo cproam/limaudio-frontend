@@ -36,7 +36,10 @@
 
 .settingsPanel>div>label>input {
     margin-right: 10px;
+    transform: scale(1.5);
 }
+
+
 
 @keyframes scaleDown {
     0% {
@@ -88,6 +91,10 @@
         display: flex;
         justify-content: start;
         flex-direction: column;
+    }
+
+    .settingsPanel>div>label:nth-child(2) {
+        margin: 10px 0;
     }
 
 }
