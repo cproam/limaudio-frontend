@@ -40,6 +40,13 @@ export default function ApplicationForm({
     const utm_source_type = localStorage.getItem("utm_source_type");
     const utm_yclid = localStorage.getItem("yclid");
 
+    const cookieConsent =
+      localStorage.getItem("cookieConsent") ||
+      '{"essential":false,"analytics":false,"marketing":false}';
+    const consentObj = JSON.parse(cookieConsent);
+
+    const [analytics, essential, marketing] = Object.values(consentObj);
+
     try {
       const res = await fetch("/api/sendForm", {
         method: "POST",
@@ -63,6 +70,9 @@ export default function ApplicationForm({
           utm_position_type,
           utm_source_type,
           utm_yclid,
+          analytics,
+          essential,
+          marketing,
         }),
       });
 

@@ -21,6 +21,9 @@ export async function POST(req: NextRequest) {
     utm_position_type,
     utm_source_type,
     utm_yclid,
+    analytics,
+    essential,
+    marketing,
   } = await req.json();
 
   try {
@@ -62,6 +65,9 @@ utm_position: ${utm_position || ""}
 utm_position_type: ${utm_position_type || ""}
 utm_source_type: ${utm_source_type || ""}
 utm_yclid: ${utm_yclid || ""}
+Аналитика: ${analytics || ""}
+Прочее: ${essential || ""}
+Маркетинг ${marketing || ""}
 `.trim();
 
     const mailOptions = {
@@ -75,7 +81,6 @@ utm_yclid: ${utm_yclid || ""}
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    // console.error(error);
     return NextResponse.json({ error: error }, { status: 500 });
   }
 }
