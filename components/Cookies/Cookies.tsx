@@ -81,7 +81,7 @@ export default function Cookies() {
             x
           </button>
         </div>
-        <div className="content">
+        <div className={styles.content}>
           {showSettings ? (
             <div className={styles.settingsPanel}>
               <h3>Настройте ваши предпочтения</h3>
@@ -132,8 +132,13 @@ export default function Cookies() {
             <>
               <p className="text">
                 Мы используем файлы cookie, чтобы улучшить пользовательский
-                опыт.{" "}
-                <Link href="/polytic" target="_blank" rel="noopener noreferrer">
+                опыт.
+                <Link
+                  href="/polytic"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "var(--color-blue)" }}
+                >
                   Узнать больше
                 </Link>
               </p>

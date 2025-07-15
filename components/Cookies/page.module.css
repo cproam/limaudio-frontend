@@ -16,7 +16,7 @@
     left: 50%;
     transform: translateX(-50%);
     border-radius: 20px;
-    background-color: var(--color-grayF6);
+    background-color: var(--color-white);
     padding: 20px;
     width: 90%;
     max-width: 700px;
@@ -55,6 +55,12 @@
 
 .cookiesModal_header {
     display: flex;
+    color: var(--color-black1C);
+
+}
+
+.content {
+    color: var(--color-black1C);
 }
 
 .cookiesModal_header>button {
