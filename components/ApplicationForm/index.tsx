@@ -26,6 +26,7 @@ export default function ApplicationForm({
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoading(true);
+    const aboutForm = "Форма подбора";
     const utm_source = localStorage.getItem("utm_source");
     const utm_medium = localStorage.getItem("utm_medium");
     const utm_campaign = localStorage.getItem("utm_campaign");
@@ -54,6 +55,7 @@ export default function ApplicationForm({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          aboutForm,
           headline,
           name,
           phone,

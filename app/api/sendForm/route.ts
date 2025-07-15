@@ -3,6 +3,7 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: NextRequest) {
   const {
+    aboutForm,
     headline,
     email,
     name,
@@ -42,7 +43,8 @@ export async function POST(req: NextRequest) {
     });
 
     let emailText = `
-Форма:   ${headline}
+${aboutForm ? `Форма: ${aboutForm}` : ""}
+Тема:   ${headline}
 Имя:     ${name}
 Телефон: ${phone}
 ${email ? `Email: ${email}` : ""}
@@ -66,8 +68,8 @@ utm_position_type: ${utm_position_type || ""}
 utm_source_type: ${utm_source_type || ""}
 utm_yclid: ${utm_yclid || ""}
 Аналитика: ${analytics || ""}
+Маркетинг: ${marketing || ""}
 Прочее: ${essential || ""}
-Маркетинг ${marketing || ""}
 `.trim();
 
     const mailOptions = {
