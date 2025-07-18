@@ -3,28 +3,17 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: NextRequest) {
   const data = await req.json();
+  console.log("Full received data:", data);
 
-  // 1. Получаем список подписчиков из Strapi REST API
-  // Здесь предполагается, что у тебя есть публичный эндпоинт или token-based доступ
-  const res = await fetch(`${process.env.STRAPI_URL}/api/subscribers`, {
-    headers: {
-      Authorization: `Bearer ${process.env.STRAPI_TOKEN}`,
-    },
-  });
+  const { emails, title, content } = data;
 
-  const subscribersData = await res.json();
-
-  const subscribers = subscribersData.data || [];
-
-  console.log(`🟢 Found ${subscribers.length} subscribers`);
-
-  if (subscribers.length === 0) {
+  if (!emails || emails.length === 0) {
+    console.log("No subscribers found inside API route");
     return new Response(JSON.stringify({ message: "No subscribers found" }), {
       status: 200,
     });
   }
 
-  // 2. Создаем transporter
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
     port: 465,
@@ -35,31 +24,29 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  // 3. Отправляем письма по очереди (или сделай Promise.all для параллельной отправки)
-  for (const subscriber of subscribers) {
-    const email = subscriber.attributes.email;
+  try {
+    for (const email of emails) {
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: title,
+        html: content,
+      };
 
-    const mailOptions = {
-      from: '"Your Site" <noreply@example.com>',
-      to: email,
-      subject: data.title,
-      html: data.content,
-    };
-
-    try {
+      console.log("Sending email to:", email);
       await transporter.sendMail(mailOptions);
-      console.log(`✅ Email sent to ${email}`);
-    } catch (error) {
-      console.error(`❌ Failed to send email to ${email}`, error);
     }
-  }
 
-  return new Response(
-    JSON.stringify({
-      message: `Newsletter sent to ${subscribers.length} users`,
-    }),
-    {
-      status: 200,
-    }
-  );
+    return new Response(
+      JSON.stringify({ message: "Emails sent", count: emails.length }),
+      {
+        status: 200,
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    return new Response(JSON.stringify({ message: "Email failed", error }), {
+      status: 500,
+    });
+  }
 }
