@@ -1,18 +1,19 @@
 import { NextRequest } from "next/server";
 import nodemailer from "nodemailer";
+import { marked } from "marked";
+import { emailTemplate } from "@/lib/emailTemplate";
 
 export async function POST(req: NextRequest) {
   const data = await req.json();
-  console.log("Full received data:", data);
-
   const { emails, title, content } = data;
 
   if (!emails || emails.length === 0) {
-    console.log("No subscribers found inside API route");
-    return new Response(JSON.stringify({ message: "No subscribers found" }), {
+    return new Response(JSON.stringify({ message: "Подписчиков не найдено" }), {
       status: 200,
     });
   }
+
+  const htmlContent = await marked.parse(content);
 
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
@@ -30,10 +31,9 @@ export async function POST(req: NextRequest) {
         from: process.env.EMAIL_USER,
         to: email,
         subject: title,
-        html: content,
+        html: emailTemplate(title, htmlContent),
       };
 
-      console.log("Sending email to:", email);
       await transporter.sendMail(mailOptions);
     }
 
