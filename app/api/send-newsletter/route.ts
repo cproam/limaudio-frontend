@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
         from: process.env.EMAIL_USER,
         to: email,
         subject: title,
-        html: emailTemplate(title, htmlContent),
+        html: emailTemplate(title, htmlContent, email),
       };
 
       await transporter.sendMail(mailOptions);

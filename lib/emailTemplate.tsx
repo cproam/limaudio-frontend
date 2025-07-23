@@ -1,4 +1,8 @@
-export function emailTemplate(title: string, htmlContent: string) {
+export function emailTemplate(
+  title: string,
+  htmlContent: string,
+  email: string
+) {
   return `
     <!DOCTYPE html>
     <html lang="ru">
@@ -14,23 +18,28 @@ export function emailTemplate(title: string, htmlContent: string) {
           }
         </style>
       </head>
-      <body style="margin:0; padding:0; font-family: Arial, sans-serif; background-color: var(--color-white);">
-        <table width="100%" cellpadding="0" cellspacing="0" style="background-color: var(--color-white); padding: 20px;">
+      <body style="margin:0; padding:0; font-family: Arial, sans-serif; background-color: #FFFFFF">
+        <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #FFFFFF; padding: 20px;">
           <tr>
             <td align="center">
-              <table width="600" cellpadding="0" cellspacing="0" style="background-color: var(--color-white); padding: 20px; border-radius: 8px;">
+              <table width="600" cellpadding="0" cellspacing="0" style="background-color: #FFFFFF; padding: 20px; border-radius: 8px;">
                 <tr>
                   <td>
-                    <h1 style="font-size: 20px; color: var(--color-black);">${title}</h1>
-                    <div style="font-size: 16px; line-height: 1.5; color: var(--color-black); max-width: 100%; overflow-wrap: break-word;">
+                    <h1 style="font-size: 20px; color: #000000;">${title}</h1>
+                    <div style="font-size: 16px; line-height: 1.5; color: #000000; max-width: 100%; overflow-wrap: break-word;">
                       ${htmlContent}
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td style="padding-top: 20px; font-size: 12px; color: var(--color-grayAO); text-align: center;">
-                    © ${new Date().getFullYear()} <a style="color: var(--color-grayAO)" href="https://limaudio.ru">Limaudio</a>. Все права защищены.
+                  <td style="padding-top: 20px; font-size: 12px; color: #A0A0A0; text-align: center;">
+                    © ${new Date().getFullYear()} <a style="color: #A0A0A0" href="https://limaudio.ru">Limaudio</a>. Все права защищены.
                   </td>
+                       <p style="font-size:12px; color:#A0A0A0; text-align:center;">
+          Если вы больше не хотите получать рассылку, <a href="https://limaudio.ru/unsubscribe/?email=${encodeURIComponent(
+            email
+          )}">отписаться</a>.
+        </p>
                 </tr>
               </table>
             </td>
