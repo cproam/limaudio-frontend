@@ -355,6 +355,7 @@ textarea {
     margin-left: 10px;
     bottom: 60px;
     right: 20px;
+    z-index: 10;
 }
 
 .popular {

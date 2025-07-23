@@ -4,58 +4,93 @@ type UnsubscribePageProps = {
   params: Promise<{ email: string }>;
 };
 
+const UnsubscribeContainer = ({
+  title,
+  message,
+  email,
+}: {
+  title: string;
+  message?: string;
+  email?: string;
+}) => (
+  <div
+    className="container text-h3-bold"
+    style={{
+      width: "100%",
+      flex: 1,
+      fontFamily: "Roboto",
+      marginTop: "20px",
+    }}
+  >
+    <div>{title}</div>
+    {message && <p style={{ marginTop: "20px" }}>{message}</p>}
+    {email && <p className="">Email: {decodeURIComponent(email)}</p>}
+  </div>
+);
+
 const UnsubscribePage: NextPage<UnsubscribePageProps> = async ({ params }) => {
   const { email } = await params;
 
   if (!email) {
+    console.error("UnsubscribePage - No email provided");
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="bg-white p-8 rounded-lg shadow-md">
-          <h1 className="text-2xl font-bold mb-4">Ошибка отписки</h1>
-          <p className="text-red-600">Не указан email для отписки.</p>
-        </div>
-      </div>
+      <UnsubscribeContainer
+        title="Ошибка отписки"
+        message="Не указан email для отписки."
+      />
     );
   }
 
   try {
-    const response = await fetch(
-      `${process.env.API_URL}/subscribers/delete-by-email/${encodeURIComponent(
-        email
-      )}`,
-      {
-        method: "DELETE",
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${process.env.TOKEN}`,
-        },
-      }
-    );
+    if (!process.env.API_URL || !process.env.TOKEN) {
+      console.error("UnsubscribePage - Missing environment variables:", {
+        apiUrl: process.env.API_URL,
+        token: process.env.TOKEN ? "Present" : "Missing",
+      });
+      throw new Error("Server configuration error: Missing API_URL or TOKEN");
+    }
+
+    const apiUrl = `${process.env.API_URL}/subscribers/delete-by-email/${email}`;
+
+    const response = await fetch(apiUrl, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${process.env.TOKEN}`,
+      },
+    });
 
     if (response.ok) {
       return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <h1 className="text-2xl font-bold mb-4">Отписка успешна</h1>
-            <p>Вы успешно отписались от рассылки.</p>
-            <p className="mt-4">Email: {decodeURIComponent(email)}</p>
-          </div>
-        </div>
+        <UnsubscribeContainer
+          title="Отписка успешна"
+          message="Вы успешно отписались от рассылки."
+          email={email}
+        />
       );
     } else {
-      throw new Error("Failed to unsubscribe");
+      const errorText = await response.text();
+      console.error("UnsubscribePage - Fetch Error:", {
+        status: response.status,
+        statusText: response.statusText,
+        errorText,
+        apiUrl,
+      });
+      let errorMessage = `Failed to unsubscribe: ${response.status} ${response.statusText}`;
+      try {
+        const errorJson = JSON.parse(errorText);
+        errorMessage = errorJson.error?.message || errorMessage;
+      } catch (parseError) {
+        console.error("UnsubscribePage - Error parsing errorText:", parseError);
+      }
+      throw new Error(errorMessage);
     }
-  } catch (error) {
+  } catch (error: any) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="bg-white p-8 rounded-lg shadow-md">
-          <h1 className="text-2xl font-bold mb-4">Ошибка отписки</h1>
-          <p className="text-red-600">
-            Произошла ошибка при попытке отписаться. Пожалуйста, попробуйте
-            позже.
-          </p>
-        </div>
-      </div>
+      <UnsubscribeContainer
+        title="Ошибка отписки"
+        message={error.message || "Произошла ошибка при попытке отписаться"}
+      />
     );
   }
 };
