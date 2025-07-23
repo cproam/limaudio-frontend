@@ -33,11 +33,8 @@ export function emailTemplate(
                 </tr>
                 <tr>
                   <td style="padding-top: 20px; font-size: 12px; color: #A0A0A0; text-align: center;">
-                    © ${new Date().getFullYear()} <a style="color: #A0A0A0" href="https://limaudio.ru">Limaudio</a>. Все права защищены.
-                  </td>
-                        <td style="padding-top: 20px; font-size: 12px; color: #A0A0A0; text-align: center;">
-             Если вы больше не хотите получать рассылку, <a href="https://limaudio.ru/unsubscribe/${email}">отписаться</a>.
-                  </td>
+                  <div>© ${new Date().getFullYear()} <a style="color: #A0A0A0" href="https://limaudio.ru">Limaudio</a>.</div>
+                  <div><a href="https://limaudio.ru/unsubscribe/${email}">отписаться</a> от рассылки</div>
                 </tr>
               </table>
             </td>
