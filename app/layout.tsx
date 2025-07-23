@@ -1,4 +1,3 @@
-import { Roboto } from "next/font/google";
 import Script from "next/script";
 import "./../styles/globals.css";
 import "./../styles/search-menu.css";
@@ -15,12 +14,6 @@ import UtmSaver from "@/components/UtmSaver";
 import { ThemeProvider } from "./providers/ThemeProvider";
 import Cookies from "@/components/Cookies/Cookies";
 
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  display: "swap",
-});
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,7 +23,6 @@ export default function RootLayout({
     <html lang="ru">
       <head></head>
       <body
-        className={roboto.className}
         style={{
           margin: 0,
           minHeight: "100vh",

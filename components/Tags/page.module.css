@@ -3,6 +3,7 @@
     flex-wrap: wrap;
     gap: 8px;
     margin-top: 10px;
+    font-family: "Roboto", "Arial", sans-serif;
 }
 
 .popular__sort>li>a {

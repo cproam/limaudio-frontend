@@ -68,7 +68,7 @@ export default function TopicPage({
     <>
       <div className="container">
         <div style={{ height: "20px" }}></div>
-        <h1>{topicLabel}</h1>
+        <div className="text-h3-bold">{topicLabel}</div>
         <div style={{ height: "20px" }}></div>
 
         {error && <div style={{ color: "red" }}>{error}</div>}
