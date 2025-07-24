@@ -2,6 +2,7 @@
 
 import BlogCard from "@/components/BlogCard";
 import Brands from "@/components/Brands";
+import NoBlogs from "@/components/NoBlogs";
 import PopularArticles from "@/components/PopularArticles";
 import { ArticleCard } from "@/types/articles";
 import { useEffect, useState } from "react";
@@ -72,11 +73,7 @@ export default function TopicPage({
         <div style={{ height: "20px" }}></div>
 
         {error && <div style={{ color: "red" }}>{error}</div>}
-        {!error && articles.length === 0 && (
-          <div style={{ fontSize: "35px", fontWeight: 600 }}>
-            Нет доступных блогов
-          </div>
-        )}
+        {!error && articles.length === 0 && <NoBlogs />}
 
         <div className="interes__card">
           <div className="cards_container">

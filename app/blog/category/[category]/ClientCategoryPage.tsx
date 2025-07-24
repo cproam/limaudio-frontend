@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { CardsResponse } from "@/types/card";
 import CardSkeleton from "@/components/Loading/CardSkeleton";
 import BlogCard from "@/components/BlogCard";
+import NoBlogs from "@/components/NoBlogs";
 
 type ClientCategoryPageProps = {
   displayCategory: string;
@@ -68,11 +69,7 @@ export default function ClientCategoryPage({
     <>
       {isLoading && <CardSkeleton heightPx="551px" />}
       {error && <div style={{ color: "red" }}>{error}</div>}
-      {!isLoading && allCards.data.length === 0 && (
-        <div style={{ fontSize: "35px", fontWeight: 600 }}>
-          Нет доступных блогов
-        </div>
-      )}
+      {!isLoading && allCards.data.length === 0 && <NoBlogs />}
       <div className="interes__card">
         <div className="cards_container">
           {allCards.data?.map((card) => (

@@ -8,6 +8,7 @@ import PopularWrapper from "../PopularWrapper";
 import Headline from "@/app/UI/headline";
 import "./../../styles/interes.css";
 import { ArticleCard } from "@/types/articles";
+import NoBlogs from "../NoBlogs";
 
 export default function BlogPage() {
   const [gridColumns, setGridColumns] = useState("repeat(3, 1fr)");
@@ -92,11 +93,7 @@ export default function BlogPage() {
             <BlogMainWrapper />
           </>
         )}
-        {!isLoading && articles.length === 0 && (
-          <div style={{ fontSize: "35px", fontWeight: 600, height: "20px" }}>
-            Нет доступных блогов
-          </div>
-        )}
+        {!isLoading && articles.length === 0 && <NoBlogs />}
 
         {isLoading && <CardSkeleton heightPx="531px" marginPx="20px" />}
         {error && <div style={{ color: "red" }}>{error}</div>}
