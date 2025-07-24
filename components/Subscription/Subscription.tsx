@@ -9,16 +9,29 @@ export default function Subscription() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const [info, setInfo] = useState<{ message: string; color: string } | null>(
     null
   );
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
-    setLoading(true);
     setError(false);
     setInfo(null);
+
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    if (!isChecked) {
+      setError(true);
+      setInfo({
+        message:
+          "Пожалуйста, подтвердите согласие на обработку персональных данных",
+        color: "red",
+      });
+      return;
+    }
+
+    setLoading(true);
 
     try {
       const res = await fetch("/api/subscribe", {
@@ -36,6 +49,7 @@ export default function Subscription() {
         trackGoal("goalSubscribe");
         setInfo({ message: "Вы успешно подписаны", color: "black" });
         setEmail("");
+        setIsChecked(false);
       } else {
         setError(true);
         setInfo({ message: resultData.message || "Ошибка", color: "red" });
@@ -67,7 +81,17 @@ export default function Subscription() {
               placeholder="Введите E-mail"
               required
               pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+              style={{ marginBottom: "10px" }}
             />
+            <label className="text-small">
+              <input
+                type="checkbox"
+                checked={isChecked}
+                onChange={(e) => setIsChecked(e.target.checked)}
+                style={{ marginRight: "5px" }}
+              />
+              Я согласен с условиями подписки
+            </label>
             <button
               className={`${styles.send_btn} ${
                 loading ? styles.send_btn_disabled : ""
@@ -101,12 +125,12 @@ export default function Subscription() {
 
           <div className="text-small">
             <span>
-              Нажимая на стрелку "Далее", Вы даете согласие на получение
+              Нажимая на стрелку "Далее", Вы даёте согласие на получение
               рекламной рассылки и обработку &nbsp;
               <Link href="/polytic">персональных данных</Link>
             </span>
           </div>
-        </div>{" "}
+        </div>
         {info && <Info res={info.message} colors={info.color} />}
       </div>
     </section>
