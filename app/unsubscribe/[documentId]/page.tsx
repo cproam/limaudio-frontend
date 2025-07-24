@@ -1,17 +1,16 @@
 import { type NextPage } from "next";
 
 type UnsubscribePageProps = {
-  params: Promise<{ email: string }>;
+  params: Promise<{ documentId: string }>;
 };
 
 const UnsubscribeContainer = ({
   title,
   message,
-  email,
 }: {
   title: string;
   message?: string;
-  email?: string;
+  documentId?: string;
 }) => (
   <div
     className="container text-h3-bold"
@@ -24,33 +23,32 @@ const UnsubscribeContainer = ({
   >
     <div>{title}</div>
     {message && <p style={{ marginTop: "20px" }}>{message}</p>}
-    {email && <p className="">Email: {decodeURIComponent(email)}</p>}
   </div>
 );
 
 const UnsubscribePage: NextPage<UnsubscribePageProps> = async ({ params }) => {
-  const { email } = await params;
+  const { documentId } = await params;
 
-  if (!email) {
-    console.error("UnsubscribePage - No email provided");
+  if (!documentId) {
+    console.error("UnsubscribePage - No documentID provided");
     return (
       <UnsubscribeContainer
         title="Ошибка отписки"
-        message="Не указан email для отписки."
+        message="Не указан идентификатор для отписки."
       />
     );
   }
 
   try {
     if (!process.env.API_URL || !process.env.TOKEN) {
-      console.error("UnsubscribePage - Missing environment variables:", {
+      console.error("Нет переменной окружения:", {
         apiUrl: process.env.API_URL,
         token: process.env.TOKEN ? "Present" : "Missing",
       });
-      throw new Error("Server configuration error: Missing API_URL or TOKEN");
+      throw new Error("Нет токена");
     }
 
-    const apiUrl = `${process.env.API_URL}/subscribers/delete-by-email/${email}`;
+    const apiUrl = `${process.env.API_URL}/subscribers/delete-by-document/${documentId}`;
 
     const response = await fetch(apiUrl, {
       method: "DELETE",
@@ -65,12 +63,12 @@ const UnsubscribePage: NextPage<UnsubscribePageProps> = async ({ params }) => {
         <UnsubscribeContainer
           title="Отписка успешна"
           message="Вы успешно отписались от рассылки."
-          email={email}
+          documentId={documentId}
         />
       );
     } else {
       const errorText = await response.text();
-      console.error("UnsubscribePage - Fetch Error:", {
+      console.error("Ошибка", {
         status: response.status,
         statusText: response.statusText,
         errorText,
@@ -90,6 +88,7 @@ const UnsubscribePage: NextPage<UnsubscribePageProps> = async ({ params }) => {
       <UnsubscribeContainer
         title="Ошибка отписки"
         message={error.message || "Произошла ошибка при попытке отписаться"}
+        documentId={documentId}
       />
     );
   }
