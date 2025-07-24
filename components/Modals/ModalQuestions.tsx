@@ -18,10 +18,23 @@ export const ModalQuestions: React.FC<ModalHeaderProps> = ({ onClose }) => {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const [showConsentError, setShowConsentError] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+
+    if (!isChecked) {
+      setError(true);
+      setShowConsentError(true);
+      alert(
+        "Пожалуйста, подтвердите согласие на обработку персональных данных"
+      );
+      return;
+    }
     setLoading(true);
+    setError(false);
+    setResult(null);
 
     const utm_source = localStorage.getItem("utm_source");
     const utm_medium = localStorage.getItem("utm_medium");
@@ -43,6 +56,8 @@ export const ModalQuestions: React.FC<ModalHeaderProps> = ({ onClose }) => {
     const consentObj = JSON.parse(cookieConsent);
 
     const [analytics, essential, marketing] = Object.values(consentObj);
+
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     try {
       const res = await fetch("/api/sendForm", {
@@ -76,11 +91,12 @@ export const ModalQuestions: React.FC<ModalHeaderProps> = ({ onClose }) => {
 
       if (res.ok) {
         router.push(`/thanks?name=${encodeURIComponent(name)}`);
+        setShowConsentError(false);
         onClose();
       }
 
       if (!res.ok) throw new Error("Ошибка отправки");
-
+      setShowConsentError(false);
       const resultData = await res.json();
       setResult(
         resultData.success ? "Успешно отправлено!" : "Ошибка отправки."
@@ -139,6 +155,19 @@ export const ModalQuestions: React.FC<ModalHeaderProps> = ({ onClose }) => {
               className="inputform"
             />
           </div>
+
+          <label
+            className="text-small"
+            style={{ color: showConsentError ? "red" : "inherit" }}
+          >
+            <input
+              type="checkbox"
+              checked={isChecked}
+              onChange={(e) => setIsChecked(e.target.checked)}
+              style={{ marginRight: "5px" }}
+            />
+            Я согласен с условиями подписки
+          </label>
 
           <button
             aria-label="Заказать"

@@ -13,6 +13,7 @@ export default function Subscription() {
   const [info, setInfo] = useState<{ message: string; color: string } | null>(
     null
   );
+  const [showConsentError, setShowConsentError] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -23,6 +24,7 @@ export default function Subscription() {
 
     if (!isChecked) {
       setError(true);
+      setShowConsentError(true);
       setInfo({
         message:
           "Пожалуйста, подтвердите согласие на обработку персональных данных",
@@ -48,15 +50,18 @@ export default function Subscription() {
         setError(false);
         trackGoal("goalSubscribe");
         setInfo({ message: "Вы успешно подписаны", color: "black" });
+        setShowConsentError(false);
         setEmail("");
         setIsChecked(false);
       } else {
         setError(true);
+        setShowConsentError(false);
         setInfo({ message: resultData.message || "Ошибка", color: "red" });
       }
     } catch (err) {
       console.error(err);
       setError(true);
+      setShowConsentError(false);
       setInfo({ message: "Произошла ошибка при подписке", color: "red" });
     } finally {
       setLoading(false);
@@ -83,7 +88,10 @@ export default function Subscription() {
               pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
               style={{ marginBottom: "10px" }}
             />
-            <label className="text-small">
+            <label
+              className="text-small"
+              style={{ color: showConsentError ? "red" : "inherit" }}
+            >
               <input
                 type="checkbox"
                 checked={isChecked}
