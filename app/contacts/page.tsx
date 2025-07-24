@@ -1,5 +1,3 @@
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
 import ScrollBtn from "@/components/ScrollBtn";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Subscription from "@/components/Subscription/Subscription";
@@ -7,7 +5,6 @@ import styles from "./page.module.css";
 import { EMAIL, INDEX, TEL, TELLINK, TG, WHATSAPP } from "@/lib/breadcrumbs";
 import QuestionForm from "@/components/QuestionForm";
 import MapComponent from "@/components/Map";
-import { Suspense } from "react";
 import Link from "next/link";
 
 const breadcrumbs = [

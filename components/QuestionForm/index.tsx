@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import PhoneInput from "@/utils/telMask";
 import { Info } from "../Modals/info";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function QuestionForm() {
   const router = useRouter();
@@ -15,9 +16,31 @@ export default function QuestionForm() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const [showConsentError, setShowConsentError] = useState(false);
+  const [info, setInfo] = useState<{ message: string; color: string } | null>(
+    null
+  );
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setError(false);
+    setInfo(null);
+    setShowConsentError(false);
+
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    if (!isChecked) {
+      setError(true);
+      setShowConsentError(true);
+      setInfo({
+        message:
+          "Пожалуйста, подтвердите согласие на обработку персональных данных",
+        color: "red",
+      });
+      return;
+    }
+
     setLoading(true);
     const utm_source = localStorage.getItem("utm_source");
     const utm_medium = localStorage.getItem("utm_medium");
@@ -72,9 +95,10 @@ export default function QuestionForm() {
       });
       if (res.ok) {
         router.push(`/thanks?name=${encodeURIComponent(name)}`);
+        setShowConsentError(false);
       }
       if (!res.ok) throw new Error("Ошибка отправки");
-
+      setShowConsentError(false);
       const resultData = await res.json();
       setResult(
         resultData.success ? "Успешно отправлено!" : "Ошибка отправки."
@@ -84,9 +108,15 @@ export default function QuestionForm() {
       setName("");
       SetComment("");
       setError(false);
+      setIsChecked(false);
+      setShowConsentError(false);
     } catch (err) {
       setResult((err as Error).message);
       setError(true);
+      setInfo({
+        message: (err as Error).message,
+        color: "red",
+      });
     } finally {
       setLoading(false);
     }
@@ -165,7 +195,25 @@ export default function QuestionForm() {
                 placeholder="Ваш вопрос"
               ></textarea>
             </div>
-
+            <label
+              className="text-small"
+              style={{ color: showConsentError ? "red" : "inherit" }}
+            >
+              <input
+                type="checkbox"
+                checked={isChecked}
+                onChange={(e) => setIsChecked(e.target.checked)}
+                style={{ marginRight: "5px" }}
+              />
+              Нажимая на кнопку "Отправить", Вы даёте согласие на
+              обработку&nbsp;
+              <Link
+                href="/polytic"
+                style={{ color: showConsentError ? "red" : "inherit" }}
+              >
+                персональных данных
+              </Link>
+            </label>
             <button
               type="submit"
               className="blogbtnblue standart-btn text-h3"
@@ -188,7 +236,7 @@ export default function QuestionForm() {
               </svg>
             </button>
           </form>
-
+          {info && <Info res={info.message} colors={info.color} />}
           {!error && result && (
             <Info
               res={error ? "Ошибка" : "Письмо отправлено"}

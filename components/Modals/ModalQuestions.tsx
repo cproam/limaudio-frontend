@@ -4,6 +4,7 @@ import PhoneInput from "@/utils/telMask";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Info } from "./info";
+import Link from "next/link";
 
 interface ModalHeaderProps {
   onClose: () => void;
@@ -166,7 +167,13 @@ export const ModalQuestions: React.FC<ModalHeaderProps> = ({ onClose }) => {
               onChange={(e) => setIsChecked(e.target.checked)}
               style={{ marginRight: "5px" }}
             />
-            Я согласен с условиями подписки
+            Нажимая на кнопку "Заказать", Вы даёте согласие на обработку&nbsp;
+            <Link
+              href="/polytic"
+              style={{ color: showConsentError ? "red" : "inherit" }}
+            >
+              персональных данных
+            </Link>
           </label>
 
           <button
