@@ -5,7 +5,7 @@ import { emailTemplate } from "@/lib/emailTemplate";
 
 export async function POST(req: NextRequest) {
   const data = await req.json();
-  const { emails, title, content } = data;
+  const { emails, title, content, arraySubsribers } = data;
 
   if (!emails || emails.length === 0) {
     return new Response(JSON.stringify({ message: "Подписчиков не найдено" }), {
@@ -24,14 +24,17 @@ export async function POST(req: NextRequest) {
       pass: process.env.EMAIL_PASS,
     },
   });
-
   try {
     for (const email of emails) {
+      const subscriber = arraySubsribers.find(
+        (sub: { email: string }) => sub.email === email
+      );
+      const documentId = subscriber ? subscriber.documentId : null;
       const mailOptions = {
         from: process.env.EMAIL_USER,
         to: email,
         subject: title,
-        html: emailTemplate(title, htmlContent, email),
+        html: emailTemplate(title, htmlContent, email, documentId),
       };
 
       await transporter.sendMail(mailOptions);
