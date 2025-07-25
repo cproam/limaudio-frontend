@@ -10,9 +10,16 @@ type SliderBlock = {
   files: string[];
 };
 
+type BaseCard = {
+  createdAt: string;
+  documentId: string;
+  id: number;
+  updatedAt: string;
+};
+
 type Block = RichTextBlock | SliderBlock;
 
-export type Card = {
+export type Card = BaseCard & {
   formAdjective?: string;
   formCategory?: string;
   blocks: Block[];
@@ -29,16 +36,12 @@ export type Card = {
     id: number;
     url: string;
   };
-  createdAt: string;
   description: string;
-  documentId: string;
-  id: number;
   publishedAt: string;
   slug: string;
   title: string;
   views: number;
   url: string;
-  updatedAt: string;
   date: string;
   type: string;
 };
