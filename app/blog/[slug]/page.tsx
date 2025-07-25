@@ -23,7 +23,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params; // Await params to get the slug
+  const { slug } = await params;
   const content: any = await getArticleBySlug(slug);
 
   return {
@@ -42,7 +42,7 @@ export default async function BlogPostPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params; // Await params to get the slug
+  const { slug } = await params;
   const content: any = await getArticleBySlug(slug);
 
   const shareUrl = `${process.env.BLOGS_URL}/blog/${content.slug}`;

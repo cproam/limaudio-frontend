@@ -104,6 +104,8 @@
     margin-left: 50px;
     display: flex;
     flex-direction: column;
+    font-family: "Roboto", "Arial", sans-serif;
+
 }
 
 .brand_list ul li>a {
