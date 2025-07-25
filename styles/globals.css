@@ -340,7 +340,7 @@ textarea {
 }
 
 
-#scrollToTopBtn {
+.scrollToTopBtn {
     position: fixed;
     border: none;
     outline: none;
@@ -356,6 +356,17 @@ textarea {
     bottom: 60px;
     right: 20px;
     z-index: 10;
+}
+
+
+.scrollToTopBtn:hover {
+    background-color: var(--color-blue);
+    transition: stroke 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.scrollToTopBtn:hover>svg path {
+    stroke: #BEBEBE;
+    transition: stroke 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .popular {
@@ -426,6 +437,15 @@ textarea {
     }
 }
 
+
+@media screen and (max-width: 1100px) {
+    .scrollToTopBtn {
+        width: 44px;
+        height: 44px;
+    }
+
+}
+
 @media screen and (max-width: 767px) {
     .text-h1 {
         font-size: 48px;
@@ -485,8 +505,11 @@ textarea {
 }
 
 @media screen and (max-width: 500px) {
-
     .container3 {
         width: 100%;
+    }
+
+    .scrollToTopBtn {
+        display: none;
     }
 }

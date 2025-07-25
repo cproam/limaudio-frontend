@@ -1,8 +1,8 @@
 import { type NextPage } from "next";
-import { CardsResponse } from "@/types/card";
 import Headline from "@/app/UI/headline";
 import ClientCategoryPage from "./ClientCategoryPage";
 import qs from "qs";
+import ScrollBtn from "@/components/ScrollBtn";
 
 type CategoryPageParams = {
   category: string;
@@ -23,7 +23,6 @@ const categoryMap: CategoryMap = {
   "gaydy-i-sovety": "Гайды и советы",
 };
 
-// Define the API response type for better type safety
 interface Category {
   name: string;
   seo?: {
@@ -63,13 +62,12 @@ async function getMatchingCategory(): Promise<CategoryResponse> {
   return res.json();
 }
 
-// Define PageProps with params as a Promise
 interface PageProps {
   params: Promise<CategoryPageParams>;
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const { category } = await params; // Await the params
+  const { category } = await params;
   const decodedCategory = decodeURIComponent(category);
   const displayCategory =
     categoryMap[decodedCategory as keyof CategoryMap] || decodedCategory;
@@ -123,6 +121,8 @@ const CategoryPage: NextPage<PageProps> = async ({ params }) => {
       <Headline text={displayCategory} left={true} />
       <br />
       <ClientCategoryPage displayCategory={displayCategory} />
+
+      <ScrollBtn />
     </div>
   );
 };

@@ -22,7 +22,7 @@ export default function ScrollBtn() {
     <>
       {visible && (
         <button
-          id="scrollToTopBtn"
+          className="scrollToTopBtn"
           onClick={scrollToTop}
           aria-label="скролл наверх"
         >
