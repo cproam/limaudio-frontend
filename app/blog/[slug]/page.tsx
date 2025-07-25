@@ -18,8 +18,13 @@ import BrandArticles from "@/components/BrandArticles";
 import { RichTextBlock } from "@/types/card";
 import { CommentsProp } from "@/types/articles";
 
-export async function generateMetadata({ params }: any): Promise<Metadata> {
-  const content: any = await getArticleBySlug(params.slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params; // Await params to get the slug
+  const content: any = await getArticleBySlug(slug);
 
   return {
     title: content.seo?.metaTitle || content.title,
@@ -32,8 +37,13 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
   };
 }
 
-export default async function BlogPostPage({ params }: any) {
-  const content: any = await getArticleBySlug(params.slug);
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params; // Await params to get the slug
+  const content: any = await getArticleBySlug(slug);
 
   const shareUrl = `${process.env.BLOGS_URL}/blog/${content.slug}`;
 
@@ -62,8 +72,6 @@ export default async function BlogPostPage({ params }: any) {
   const tags: any = content?.topics;
   const blocs: RichTextBlock = content?.blocks;
   const comments: CommentsProp[] = content?.comments || [];
-
-  console.log(comments);
 
   if (!content) return notFound();
   return (
