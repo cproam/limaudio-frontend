@@ -10,33 +10,77 @@ import BlogMainPageWrapper from "@/components/BlogMainPageWrapper";
 import { Metadata } from "next";
 import BrandArticles from "@/components/BrandArticles";
 
-export async function generateMetadata({ params }: any): Promise<Metadata> {
-  const content: any = await getBrandsBySlug(params.slug);
+// Define the expected shape of params
+interface Params {
+  slug: string;
+}
+
+// Generate metadata for the page
+export async function generateMetadata({
+  params: paramsPromise,
+}: {
+  params: Promise<Params>;
+}): Promise<Metadata> {
+  const params = await paramsPromise; // Await the params
+
+  // Validate params.slug
+  if (!params?.slug) {
+    return {
+      title: "Brand Not Found",
+      description: "No brand found for the given slug.",
+    };
+  }
+
+  const content = await getBrandsBySlug(params.slug);
+
+  // Handle case where content is not found
+  if (!content) {
+    return {
+      title: "Brand Not Found",
+      description: "No brand found for the given slug.",
+    };
+  }
 
   return {
-    title: content.seo?.metaTitle || content.title,
-    description: content.seo?.metaDescription || content.description,
+    title: content.seo?.metaTitle || content.title || "Brand",
+    description: content.seo?.metaDescription || content.description || "",
     keywords: content.title ? [content.title] : [""],
     openGraph: {
-      title: content.seo?.metaTitle || content.title,
-      description: content.seo?.metaDescription || content.description,
+      title: content.seo?.metaTitle || content.title || "Brand",
+      description: content.seo?.metaDescription || content.description || "",
     },
   };
 }
 
-export default async function BrandsPage({ params }: any) {
-  const content: any = await getBrandsBySlug(params.slug);
+// Page component
+export default async function BrandsPage({
+  params: paramsPromise,
+}: {
+  params: Promise<Params>;
+}) {
+  const params = await paramsPromise; // Await the params
+
+  // Validate params.slug
+  if (!params?.slug) {
+    notFound();
+  }
+
+  const content = await getBrandsBySlug(params.slug);
+
+  // Handle case where content is not found
+  if (!content) {
+    notFound();
+  }
 
   const breadcrumbs = [
     { label: "Главная", href: INDEX },
     { label: "Бренды", href: BRANDS },
     {
-      label: `${content.title}`,
+      label: content.title || "Brand",
       href: "",
       isActive: true,
     },
   ];
-  if (!content) return notFound();
 
   return (
     <>
@@ -50,7 +94,6 @@ export default async function BrandsPage({ params }: any) {
       <BrandArticles slug={content.slug} brand={content.title} />
       <PopularArticles />
       <Subscription />
-
       <ScrollBtn />
     </>
   );
