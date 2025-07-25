@@ -155,7 +155,7 @@ export default function Brands() {
                 </svg>
               </button>
               <Swiper
-                loop={true}
+                loop={allCards.length > 6}
                 spaceBetween={10}
                 navigation={{
                   nextEl: ".brand-button-next",
