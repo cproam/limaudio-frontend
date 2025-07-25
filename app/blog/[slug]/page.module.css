@@ -1,6 +1,12 @@
 .blog__article {
     margin-top: 33px;
     display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.blog__article:nth-last-child(-n+2) {
+    width: 100%;
 }
 
 .blog__article>div {
