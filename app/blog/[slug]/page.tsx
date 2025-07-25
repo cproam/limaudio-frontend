@@ -87,7 +87,6 @@ export default async function BlogPostPage({ params }: any) {
   const comments: any = content?.comments;
 
   if (!content) return notFound();
-
   return (
     <>
       <div className="container" style={{ width: "100%" }}>
