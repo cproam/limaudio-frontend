@@ -1,8 +1,8 @@
 "use client";
 
+import Headline from "@/app/UI/headline";
 import BlogCard from "@/components/BlogCard";
 import Brands from "@/components/Brands";
-import NoBlogs from "@/components/NoBlogs";
 import PopularArticles from "@/components/PopularArticles";
 import { ArticleCard } from "@/types/articles";
 import { useEffect, useState } from "react";
@@ -67,13 +67,15 @@ export default function TopicPage({
 
   return (
     <>
-      <div className="container">
+      <div className="container3">
         <div style={{ height: "20px" }}></div>
-        <div className="text-h3-bold">{topicLabel}</div>
+        <Headline text={topicLabel} left={true} />
         <div style={{ height: "20px" }}></div>
 
         {error && <div style={{ color: "red" }}>{error}</div>}
-        {!error && articles.length === 0 && <NoBlogs />}
+        {!error && articles.length === 0 && (
+          <Headline text="Нет доступных блогов" left={true} />
+        )}
 
         <div className="interes__card">
           <div className="cards_container">

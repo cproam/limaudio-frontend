@@ -7,11 +7,15 @@
 .card__desc {
     display: flex;
     flex-direction: column;
-    height: 100%;
+
+}
+
+.wide>.card__desc {
+    height: auto
 }
 
 .card__desc>p {
-    margin-top: auto;
+    /*  margin-top: auto;*/
     display: -webkit-box;
     -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
@@ -23,7 +27,8 @@
 }
 
 .card__desc>span {
-    margin-top: 10px;
+    /*margin-top: 10px;*/
+    margin-top: auto;
     color: var(--color-56-fff);
 }
 
@@ -31,6 +36,10 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.small>.card__desc {
+    height: 100%;
 }
 
 
@@ -124,6 +133,10 @@
 
     .wide>.card__img {
         max-width: 100%;
+    }
+
+    .card__desc>span {
+        margin-top: 10px;
     }
 }
 

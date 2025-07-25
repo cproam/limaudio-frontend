@@ -1,14 +1,12 @@
 "use client";
-import { notFound, useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
 import BlogCard from "../BlogCard";
 import CardSkeleton from "../Loading/CardSkeleton";
 import BlogMainWrapper from "@/components/BlogMainPageWrapper";
-import PopularWrapper from "../PopularWrapper";
 import Headline from "@/app/UI/headline";
 import "./../../styles/interes.css";
 import { ArticleCard } from "@/types/articles";
-import NoBlogs from "../NoBlogs";
 
 export default function BlogPage() {
   const [gridColumns, setGridColumns] = useState("repeat(3, 1fr)");
@@ -93,7 +91,9 @@ export default function BlogPage() {
             <BlogMainWrapper />
           </>
         )}
-        {!isLoading && articles.length === 0 && <NoBlogs />}
+        {!isLoading && articles.length === 0 && (
+          <Headline text="Нет доступных блогов" left={true} />
+        )}
 
         {isLoading && <CardSkeleton heightPx="531px" marginPx="20px" />}
         {error && <div style={{ color: "red" }}>{error}</div>}

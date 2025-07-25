@@ -5,7 +5,6 @@ import { Card, CardsResponse } from "@/types/card";
 import { useSearchParams } from "next/navigation";
 import CardSkeleton from "../Loading/CardSkeleton";
 import Headline from "@/app/UI/headline";
-import NoBlogs from "../NoBlogs";
 
 type GroupedCard = {
   type: "big" | "small";
@@ -109,7 +108,9 @@ export default function BlogMainPage() {
         ))}
         {isLoading && <CardSkeleton heightPx="1317px" />}
         {error && <div style={{ color: "red" }}>{error}</div>}
-        {!isLoading && allCards.data.length === 0 && <NoBlogs />}
+        {!isLoading && allCards.data.length === 0 && (
+          <Headline text="Нет доступных блогов" left={true} />
+        )}
       </div>
       {visibleGroups < groupedCards.length && (
         <div className="show-more-wrapper">

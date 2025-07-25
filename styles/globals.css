@@ -477,8 +477,16 @@ textarea {
     }
 }
 
+
 @media screen and (max-width: 600px) {
     .text-h1 {
         font-size: 26px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .container3 {
+        width: 100%;
     }
 }
