@@ -179,9 +179,16 @@ export default async function BlogPostPage({ params }: any) {
                 topic={content.topics[0]?.title}
               />
             </div>
-            <BrandArticles slug={content.slug} brand={content.brand} />
           </div>
         </div>
+
+        <div className={styles.mobileMin}>
+          <BlockSimilarCard
+            slug={content.slug}
+            topic={content.topics[0]?.title}
+          />
+        </div>
+        <BrandArticles slug={content.slug} brand={content.brand} />
       </section>
       <ScrollBtn />
     </>

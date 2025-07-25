@@ -146,9 +146,13 @@
     font-size: 18px !important;
 }
 
+.mobileMin {
+    display: none;
+}
 
 
-@media screen and (max-width:767px) {
+
+@media screen and (max-width:768px) {
     .blog {
         margin-top: 14px;
     }
@@ -186,6 +190,10 @@
         margin-top: 25px;
     }
 
+    .blog__block>div:last-child {
+        display: none;
+    }
+
     .blog__content {
         width: 100%;
     }
@@ -199,7 +207,13 @@
         margin-top: 16px;
 
     }
+
+    .mobileMin {
+        display: block;
+    }
 }
+
+
 
 @media screen and (max-width:500px) {
     .consultation {
@@ -211,5 +225,6 @@
         width: 100%;
         margin-top: 10px;
     }
+
 
 }
