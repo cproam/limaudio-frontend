@@ -10,6 +10,13 @@ type BaseBlock = {
   id: number;
 };
 
+type BaseCard = {
+  createdAt: string;
+  documentId: string;
+  id: number;
+  updatedAt: string;
+};
+
 interface RichTextBlock extends BaseBlock {
   __component: "shared.rich-text";
   body: string;
@@ -103,3 +110,26 @@ export interface ArticleCard {
   updatedAt: string;
   views: number;
 }
+
+export interface Reply {
+  id: number;
+  documentId: string;
+  name: string;
+  text: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
+export type CommentsProp = {
+  article: ArticleCard[];
+  createdAt: string;
+  documentId: string;
+  id: number;
+  name: string;
+  publishedAt: string;
+  replies: any[];
+  reply: any;
+  text: string;
+  updatedAt: string;
+};

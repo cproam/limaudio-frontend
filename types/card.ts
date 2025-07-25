@@ -1,4 +1,4 @@
-type RichTextBlock = {
+export type RichTextBlock = {
   __component: "shared.rich-text";
   id: number;
   body: string;

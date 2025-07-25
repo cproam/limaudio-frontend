@@ -8,7 +8,6 @@ import Tags from "@/components/Tags";
 import ApplicationForm from "@/components/ApplicationForm";
 import Share from "@/components/Share";
 import { getArticleBySlug } from "@/app/api/article/api";
-import { Articles } from "@/types/articles";
 import MarkdownBlog from "@/components/MarkdownBlog";
 import { FormatDate } from "@/utils/formatDate";
 import BlockSimilarCard from "@/components/BlogSimilar/BlockSimilarCard";
@@ -16,30 +15,8 @@ import Headline from "@/app/UI/headline";
 import { Metadata } from "next";
 import { transliterate } from "transliteration";
 import BrandArticles from "@/components/BrandArticles";
-
-interface PageProps {
-  params: { slug: string };
-}
-
-type Bloc = RichTextBloc | SliderBloc | UnknownBloc;
-
-interface RichTextBloc {
-  __component: "shared.rich-text";
-  body: string;
-  id: number;
-}
-
-interface SliderBloc {
-  __component: "shared.slider";
-  files: Array<{
-    url: string;
-  }>;
-}
-
-interface UnknownBloc {
-  __component: string;
-  [key: string]: any;
-}
+import { RichTextBlock } from "@/types/card";
+import { CommentsProp } from "@/types/articles";
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
   const content: any = await getArticleBySlug(params.slug);
@@ -83,8 +60,10 @@ export default async function BlogPostPage({ params }: any) {
   ];
 
   const tags: any = content?.topics;
-  const blocs: any = content?.blocks;
-  const comments: any = content?.comments;
+  const blocs: RichTextBlock = content?.blocks;
+  const comments: CommentsProp[] = content?.comments || [];
+
+  console.log(comments);
 
   if (!content) return notFound();
   return (
