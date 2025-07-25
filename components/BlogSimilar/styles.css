@@ -33,6 +33,7 @@
     .similarArticle__span {
         display: flex;
         margin-top: 10px;
+        font-family: "Roboto", "Arial", sans-serif;
     }
 
     .similarArticle__span>div {
@@ -58,11 +59,28 @@
     }
 
 
-    @media screen and (max-width:767px) {
+    @media screen and (max-width:768px) {
 
         .blog__similar {
             width: 100%;
             background-color: transparent;
             margin-top: 20px;
+            padding: 22px 0px 18px 0px;
+        }
+
+        .similarArticle__img>img {
+            border-radius: 0;
+        }
+
+        .similarArticle>h3 {
+            padding: 0 16px;
+        }
+
+        .similarArticle__span {
+            padding: 0 16px;
+        }
+
+        .blog__similar>.text-h3-bold {
+            padding-left: 16px;
         }
     }
