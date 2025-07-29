@@ -145,8 +145,8 @@ export default function Comments({
     (comment) => comment.reply === null
   );
 
-  // Получаем только видимые комментарии
   const visibleTopLevelComments = topLevelComments.slice(0, visibleComments);
+  let replyTextChange = replyText.replace(/@[^,\s]+,?\s*/, "");
 
   return (
     <div className={styles.comments}>
@@ -232,7 +232,7 @@ export default function Comments({
                       aria-label="Отправить"
                       type="submit"
                       className="blogbtnblue standart-btn text-h3"
-                      disabled={loadingReply || !replyText.trim()}
+                      disabled={loadingReply || !replyTextChange}
                     >
                       {loadingReply ? "Отправка..." : "Отправить ответ"}
                     </button>
