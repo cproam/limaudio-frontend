@@ -1,7 +1,7 @@
 "use client";
 import { FormatDate } from "@/utils/formatDate";
 import styles from "./page.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Info } from "../Modals/info";
 
 interface Comment {
@@ -42,11 +42,11 @@ export default function Comments({
   } | null>(null);
   const [replyText, setReplyText] = useState("");
   const [localComments, setLocalComments] = useState<Comment[]>(comments);
-  const [visibleComments, setVisibleComments] = useState(3); // Количество отображаемых комментариев
+  const [visibleComments, setVisibleComments] = useState(3);
 
-  // Функция для загрузки дополнительных комментариев
   const loadMoreComments = () => {
     setVisibleComments((prev) => prev + 3);
+    document.getElementById("reply")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -139,7 +139,6 @@ export default function Comments({
   ) => {
     setReplyingTo({ id: commentId, name: commentName, documentId });
     setReplyText(`@${commentName}, `);
-    document.getElementById("reply")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const topLevelComments = localComments.filter(
