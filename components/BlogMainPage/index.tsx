@@ -184,7 +184,6 @@ export default function BlogMainPage() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  console.log(allCards);
   useEffect(() => {
     const fetchCards = async (page: number = 1, append: boolean = false) => {
       try {
