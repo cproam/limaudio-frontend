@@ -1,12 +1,13 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ModalQuestions } from "./ModalQuestions";
 import { Switch } from "../Switch";
+import { TopicHeader } from "@/types/articles";
 
 interface ModalHeaderProps {
   onClose: () => void;
-  topics: any;
+  topics: TopicHeader[];
 }
 
 export const ModalHeader: React.FC<ModalHeaderProps> = ({

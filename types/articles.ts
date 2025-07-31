@@ -4,25 +4,17 @@ type MediaFile = {
   url?: string;
   createdAt?: string;
 };
-
 type Seo = {
   metaTitle?: string;
   metaDescription?: string;
   metaImage?: string;
   metaKeys?: string;
+  shareImage?: any;
 };
 type BaseBlock = {
   __component: string;
   id: number;
 };
-
-type Image = {
-  createdAt: string;
-  documentId: string;
-  id: number;
-  updatedAt: string;
-};
-
 type BaseCard = {
   createdAt: string;
   documentId: string;
@@ -117,4 +109,12 @@ export type CommentsProp = BaseCard & {
   replies: any[];
   reply: any;
   text: string;
+};
+
+export type TopicHeader = BaseCard & {
+  slug: string;
+  title: string;
+  seo?: Seo;
+  image: MediaFile;
+  publishedAt: string;
 };
