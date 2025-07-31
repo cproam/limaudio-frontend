@@ -70,9 +70,9 @@ export default function ClientCategoryPage({
   return (
     <>
       <div className="interes__card">
+        {isLoading && <CardSkeleton heightPx="551px" widthPx="100%" />}
+        {error && <div style={{ color: "red" }}>{error}</div>}
         <div className="cards_container">
-          {isLoading && <CardSkeleton heightPx="551px" />}
-          {error && <div style={{ color: "red" }}>{error}</div>}
           {!isLoading && allCards.data.length === 0 && (
             <Headline text="Нет доступных блогов" left={true} />
           )}

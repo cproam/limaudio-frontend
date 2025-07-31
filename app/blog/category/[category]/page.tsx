@@ -103,7 +103,7 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 const CategoryPage: NextPage<PageProps> = async ({ params }) => {
-  const { category } = await params; // Await the params
+  const { category } = await params;
   const decodedCategory = decodeURIComponent(category);
   const displayCategory =
     categoryMap[decodedCategory as keyof CategoryMap] || decodedCategory;
