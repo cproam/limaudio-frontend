@@ -55,8 +55,10 @@ export default function ClientCategoryPage({
 
         const cards = await res.json();
         setAllCards(cards);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err: unknown) {
+        setError(
+          err instanceof Error ? err.message : "Ошибка при загрузке данных"
+        );
       } finally {
         setIsLoading(false);
       }

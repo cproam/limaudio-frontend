@@ -42,8 +42,10 @@ export default function BlockSimilarCard({
         const cards = await res.json();
         setAllCards(cards);
         setIsLoading(false);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err: unknown) {
+        setError(
+          err instanceof Error ? err.message : "Ошибка при загрузке данных"
+        );
         setIsLoading(false);
       }
     };

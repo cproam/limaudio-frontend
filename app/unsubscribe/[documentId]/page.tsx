@@ -83,11 +83,16 @@ const UnsubscribePage: NextPage<UnsubscribePageProps> = async ({ params }) => {
       }
       throw new Error(errorMessage);
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errorMessage =
+      error instanceof Error
+        ? error.message
+        : "Произошла ошибка при попытке отписаться";
+
     return (
       <UnsubscribeContainer
         title="Ошибка отписки"
-        message={error.message || "Произошла ошибка при попытке отписаться"}
+        message={errorMessage}
         documentId={documentId}
       />
     );
