@@ -15,8 +15,7 @@ import Headline from "@/app/UI/headline";
 import { Metadata } from "next";
 import { transliterate } from "transliteration";
 import BrandArticles from "@/components/BrandArticles";
-import { RichTextBlock } from "@/types/card";
-import { Articles, CommentsProp } from "@/types/articles";
+import { Articles } from "@/types/articles";
 
 export async function generateMetadata({
   params,
@@ -69,9 +68,9 @@ export default async function BlogPostPage({
     },
   ];
 
-  const tags: any = content?.topics;
-  const blocs: RichTextBlock = content?.blocks;
-  const comments: CommentsProp[] = content?.comments || [];
+  const tags = content?.topics;
+  const blocs = content?.blocks;
+  const comments = content?.comments || [];
 
   if (!content) return notFound();
   return (

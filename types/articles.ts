@@ -5,9 +5,22 @@ type MediaFile = {
   createdAt?: string;
 };
 
+type Seo = {
+  metaTitle?: string;
+  metaDescription?: string;
+  metaImage?: string;
+  metaKeys?: string;
+};
 type BaseBlock = {
   __component: string;
   id: number;
+};
+
+type Image = {
+  createdAt: string;
+  documentId: string;
+  id: number;
+  updatedAt: string;
 };
 
 type BaseCard = {
@@ -57,12 +70,7 @@ export type Articles = BaseCard & {
     count: number;
   };
   topics: Topic;
-  seo?: {
-    metaTitle?: string;
-    metaDescription?: string;
-    metaImage?: string;
-    metaKeys?: string;
-  };
+  seo?: Seo;
 };
 
 export interface Article extends BaseCard {
