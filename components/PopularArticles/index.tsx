@@ -64,12 +64,12 @@ export default function PopularArticles({
       <Headline text="Популярные статьи" headstyle={headstyle} left={true} />
 
       <div className="interes__card">
-        {isLoading && <CardSkeleton heightPx="551px" />}
-        {error && <div style={{ color: "red" }}>{error}</div>}
-        {!isLoading && !allCards && (
-          <Headline text="Нет доступных блогов" left={true} />
-        )}
         <div className="cards_container" style={{ grid: gridStyle }}>
+          {isLoading && <CardSkeleton heightPx="551px" marginPx="100%" />}
+          {error && <div style={{ color: "red" }}>{error}</div>}
+          {!isLoading && !allCards && (
+            <Headline text="Нет доступных блогов" left={true} />
+          )}
           {sortedCards.map((card) => (
             <BlogCard key={card.id} card={card} type="small" />
           ))}

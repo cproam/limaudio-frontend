@@ -86,7 +86,7 @@ export default function BlogMainPage() {
   const groupedCards = groupCards(allCards.data);
   const visibleGrouped = groupedCards.slice(0, visibleGroups);
   const showMore = () => setVisibleGroups((prev) => prev + 3);
-  console.log(allCards);
+
 
   return (
     <div className="container3" style={{ marginTop: "20px" }}>

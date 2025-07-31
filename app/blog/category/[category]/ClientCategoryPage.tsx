@@ -67,13 +67,14 @@ export default function ClientCategoryPage({
 
   return (
     <>
-      {isLoading && <CardSkeleton heightPx="551px" />}
-      {error && <div style={{ color: "red" }}>{error}</div>}
-      {!isLoading && allCards.data.length === 0 && (
-        <Headline text="Нет доступных блогов" left={true} />
-      )}
       <div className="interes__card">
         <div className="cards_container">
+          {isLoading && <CardSkeleton heightPx="551px" />}
+          {error && <div style={{ color: "red" }}>{error}</div>}
+          {!isLoading && allCards.data.length === 0 && (
+            <Headline text="Нет доступных блогов" left={true} />
+          )}
+
           {allCards.data?.map((card) => (
             <BlogCard key={card.id} card={card} type="small" />
           ))}
