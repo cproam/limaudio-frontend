@@ -44,8 +44,8 @@ export default function Header() {
 
         const cards = await res.json();
         setTopics(cards.data);
-      } catch (err: any) {
-        console.log(err);
+      } catch (err: unknown) {
+        console.error(err);
       }
     };
 

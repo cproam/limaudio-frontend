@@ -44,8 +44,10 @@ export default function TopicPage({
         }
         const topicsData: TopicApiResponse = await res.json();
         setTopics(topicsData.data);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err: unknown) {
+        setError(
+          err instanceof Error ? err.message : "Ошибка при загрузке данных"
+        );
       }
     };
 

@@ -218,10 +218,13 @@ export async function GET(req: NextRequest) {
 
     const data = await res.json();
     return NextResponse.json(data);
-  } catch (error: any) {
-    console.error("Error fetching data:", error.message);
+  } catch (error: unknown) {
+    console.error("Error fetching data:", error);
     return NextResponse.json(
-      { error: "Failed to fetch data", details: error.message },
+      {
+        error: "Failed to fetch data",
+        details: error instanceof Error ? error.message : String(error),
+      },
       { status: 500 }
     );
   }

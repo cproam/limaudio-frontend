@@ -42,7 +42,7 @@ export default function Footer() {
         );
 
         setTopics(topics);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.log(err);
       }
     };

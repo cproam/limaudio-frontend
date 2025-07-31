@@ -22,6 +22,11 @@ type BaseCard = {
   updatedAt: string;
 };
 
+type repliesProps = BaseCard & {
+  name: string;
+  publishedAt: string;
+  text: string;
+};
 interface RichTextBlock extends BaseBlock {
   __component: "shared.rich-text";
   body: string;
@@ -106,7 +111,7 @@ export type CommentsProp = BaseCard & {
   article: ArticleCard[];
   name: string;
   publishedAt: string;
-  replies: any[];
+  replies: repliesProps;
   reply: any;
   text: string;
 };
@@ -117,4 +122,28 @@ export type TopicHeader = BaseCard & {
   seo?: Seo;
   image: MediaFile;
   publishedAt: string;
+};
+
+export type SimilarCard = BaseCard & {
+  type: string;
+  category: any;
+  comments: { count: number };
+  cover: MediaFile;
+  description: string;
+  formAdjective: string;
+  formCategory: string;
+  publishedAt: string;
+  slug: string;
+  title: string;
+  topics?: {
+    createdAt: string;
+    documentId: string;
+    id: number;
+    image: MediaFile;
+    publishedAt: string;
+    slug: string;
+    title: string;
+    updatedAt: string;
+  };
+  views: number;
 };

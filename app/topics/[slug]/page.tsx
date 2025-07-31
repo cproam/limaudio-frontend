@@ -50,7 +50,6 @@ export async function generateMetadata({
 }
 
 export default async function TopicPageWrapper({ params }: PageProps) {
-  // Await the params to get the slug
   const { slug } = await params;
   const label = getTopicLabel(slug);
 
@@ -63,8 +62,10 @@ export default async function TopicPageWrapper({ params }: PageProps) {
 
   try {
     matchingTopics = await getMatchingTopics(label);
-  } catch (err: any) {
-    error = err.message;
+  } catch (err: unknown) {
+    const errorMessage = err instanceof Error ? err.message : String(err);
+    console.error("Ошибка", errorMessage);
+    error = errorMessage;
   }
 
   return (

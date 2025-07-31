@@ -216,9 +216,11 @@ export default function Popular() {
         const data = await res.json();
         setAllTags(data);
         setIsLoading(false);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("Error fetching cards:", err);
-        setError(err.message || "Ошибка при загрузке данных");
+        setError(
+          err instanceof Error ? err.message : "Ошибка при загрузке данных"
+        );
         setIsLoading(false);
       }
     };
@@ -276,9 +278,11 @@ export default function Popular() {
 
         setTopics(topics);
         setIsLoadingTags(false);
-      } catch (err: any) {
-        console.log(err);
-        setError(err.message);
+      } catch (err: unknown) {
+        console.error(err);
+        setError(
+          err instanceof Error ? err.message : "Ошибка при загрузке данных"
+        );
         setIsLoadingTags(false);
       }
     };
