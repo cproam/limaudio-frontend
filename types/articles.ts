@@ -61,6 +61,7 @@ export type Articles = BaseCard & {
     metaTitle?: string;
     metaDescription?: string;
     metaImage?: string;
+    metaKeys?: string;
   };
 };
 

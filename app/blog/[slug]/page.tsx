@@ -16,7 +16,7 @@ import { Metadata } from "next";
 import { transliterate } from "transliteration";
 import BrandArticles from "@/components/BrandArticles";
 import { RichTextBlock } from "@/types/card";
-import { CommentsProp } from "@/types/articles";
+import { Articles, CommentsProp } from "@/types/articles";
 
 export async function generateMetadata({
   params,
@@ -24,15 +24,15 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const content: any = await getArticleBySlug(slug);
+  const content: Articles | null = await getArticleBySlug(slug);
 
   return {
-    title: content.seo?.metaTitle || content.title,
-    description: content.seo?.metaDescription || content.description,
-    keywords: content.seo?.metaKeys ? [content.seo?.metaKeys] : [""],
+    title: content?.seo?.metaTitle || content?.title,
+    description: content?.seo?.metaDescription || content?.description,
+    keywords: content?.seo?.metaKeys ? [content.seo?.metaKeys] : [""],
     openGraph: {
-      title: content.seo?.metaTitle || content.title,
-      description: content.seo?.metaDescription || content.description,
+      title: content?.seo?.metaTitle || content?.title,
+      description: content?.seo?.metaDescription || content?.description,
     },
   };
 }
