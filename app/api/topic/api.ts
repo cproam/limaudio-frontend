@@ -1,18 +1,10 @@
-import { Article } from "@/types/articles";
+import { Article, MediaFile, Seo } from "@/types/articles";
 import qs from "qs";
-
-interface Seo {
-  id: number;
-  metaTitle: string;
-  metaDescription: string;
-  metaKeys: string;
-  shareImage: any;
-}
 
 interface Topic {
   title: string;
   articles: Article[];
-  image?: { id: number; documentId: string; url: string };
+  image?: MediaFile;
   seo?: Seo;
 }
 

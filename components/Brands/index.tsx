@@ -28,29 +28,6 @@ export default function Brands() {
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
-  /*
-  useEffect(() => {
-    const fetchCards = async () => {
-      try {
-        const res = await fetch("/api/brands");
-        if (!res.ok) {
-          const text = await res.text();
-          throw new Error(text || "Ошибка при загрузке");
-        }
-
-        const cards = await res.json();
-        const card = cards.data;
-
-        setAllCards(card);
-        setIsLoading(false);
-      } catch (err: any) {
-        setError(err.message);
-        setIsLoading(false);
-      }
-    };
-
-    fetchCards();
-  }, []);*/
 
   useEffect(() => {
     const cacheKey = "brands_data";

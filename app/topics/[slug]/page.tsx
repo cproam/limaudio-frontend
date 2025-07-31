@@ -62,7 +62,7 @@ export default async function TopicPageWrapper({ params }: PageProps) {
 
   try {
     matchingTopics = await getMatchingTopics(label);
-  } catch (err: any) {
+  } catch (err: unknown) {
     const errorMessage = err instanceof Error ? err.message : String(err);
     console.error("Operation failed:", errorMessage);
     error = errorMessage;

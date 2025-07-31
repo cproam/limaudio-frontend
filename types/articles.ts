@@ -1,10 +1,10 @@
-type MediaFile = {
+export type MediaFile = {
   documentId: string;
   id: number;
   url?: string;
   createdAt?: string;
 };
-type Seo = {
+export type Seo = {
   metaTitle?: string;
   metaDescription?: string;
   metaImage?: string;
@@ -126,7 +126,7 @@ export type TopicHeader = BaseCard & {
 
 export type SimilarCard = BaseCard & {
   type: string;
-  category: any;
+  category: Category;
   comments: { count: number };
   cover: MediaFile;
   description: string;
@@ -135,15 +135,6 @@ export type SimilarCard = BaseCard & {
   publishedAt: string;
   slug: string;
   title: string;
-  topics?: {
-    createdAt: string;
-    documentId: string;
-    id: number;
-    image: MediaFile;
-    publishedAt: string;
-    slug: string;
-    title: string;
-    updatedAt: string;
-  };
+  topics?: Topic;
   views: number;
 };
