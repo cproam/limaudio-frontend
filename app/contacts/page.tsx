@@ -2,7 +2,17 @@ import ScrollBtn from "@/components/ScrollBtn";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Subscription from "@/components/Subscription/Subscription";
 import styles from "./page.module.css";
-import { EMAIL, INDEX, TEL, TELLINK, TG, WHATSAPP } from "@/lib/breadcrumbs";
+import {
+  EMAIL,
+  time,
+  INDEX,
+  kazan,
+  novosibirsk,
+  TEL,
+  TELLINK,
+  TG,
+  WHATSAPP,
+} from "@/lib/breadcrumbs";
 import QuestionForm from "@/components/QuestionForm";
 import MapComponent from "@/components/Map";
 import Link from "next/link";
@@ -27,7 +37,7 @@ export default function Contacts() {
               <ul className={styles.contacts__list}>
                 <li>
                   <label className="text">График работы: </label>
-                  <span className="text20">с 9:00 до 18:00</span>
+                  <span className="text20">{time}</span>
                 </li>
                 <li>
                   <label className="text">E-mail: </label>
@@ -44,8 +54,8 @@ export default function Contacts() {
               </ul>
               <p className="text">Адреса</p>
               <ul className={`text20 ${styles.contacts__address}`}>
-                <li>г. Казань, ул. Бухарская, д. 32 к2</li>
-                <li>г. Новосибирск, ул. Гаранина, д. 15</li>
+                <li>{kazan}</li>
+                <li>{novosibirsk}</li>
               </ul>
 
               <div className={`text16 ${styles.contacts__btn}`}>

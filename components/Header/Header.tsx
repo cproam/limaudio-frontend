@@ -252,7 +252,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link href={TG}>
+              <Link href={TG} aria-label="telegram">
                 <svg
                   width="25"
                   height="25"

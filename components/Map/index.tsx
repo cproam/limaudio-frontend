@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Script from "next/script";
 import styles from "./page.module.css";
+import { kazan, novosibirsk } from "@/lib/breadcrumbs";
 
 interface YMaps {
   Map: new (
@@ -59,7 +60,7 @@ const MapComponent: React.FC = () => {
           coordsKazan,
           {
             hintContent: "LIMAUDIO",
-            balloonContent: "г. Казань, ул. Бухарская, д. 32 к2",
+            balloonContent: { kazan },
           },
           {
             preset: "islands#redDotIcon",
@@ -80,7 +81,7 @@ const MapComponent: React.FC = () => {
           coordsNovosibirsk,
           {
             hintContent: "LIMAUDIO",
-            balloonContent: "г. Новосибирск, ул. Гаранина, д. 15",
+            balloonContent: { novosibirsk },
           },
           {
             preset: "islands#redDotIcon",
@@ -129,24 +130,24 @@ const MapComponent: React.FC = () => {
         />
         <div className={styles.tabs}>
           <button
-            aria-label="г. Казань, ул. Бухарская, д. 32 к2"
+            aria-label={kazan}
             type="button"
             className={`${styles.tabButton} ${
               activeMap === 1 ? styles.active : ""
             } ${styles.text20}`}
             onClick={() => handleMapChange(1)}
           >
-            г. Казань, ул. Бухарская, д. 32 к2
+            {kazan}
           </button>
           <button
             type="button"
-            aria-label="г. Новосибирск, ул. Гаранина, д. 15"
+            aria-label={novosibirsk}
             className={`${styles.tabButton} ${
               activeMap === 2 ? styles.active : ""
             } ${styles.text20}`}
             onClick={() => handleMapChange(2)}
           >
-            г. Новосибирск, ул. Гаранина, д. 15
+            {novosibirsk}
           </button>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ModalQuestions } from "./ModalQuestions";
 import { Switch } from "../Switch";
 import { TopicHeader } from "@/types/articles";
+import { TEL, TELLINK, TG, WHATSAPP } from "@/lib/breadcrumbs";
 
 interface ModalHeaderProps {
   onClose: () => void;
@@ -48,13 +49,13 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
           <br />
           <Link href="/contacts">Контакты</Link>
           <Link href="/polytic">Политика конфиденциальности</Link>
-          <Link href="tel:88007700473">8 (800) 770-04-73</Link>
+          <Link href={TELLINK}>{TEL}</Link>
           <Link href="/" onClick={() => setCallbackModal(true)}>
             Заказать обратный звонок
           </Link>
         </ul>
         <ul className="modal__icons">
-          <Link href="#">
+          <Link href={TG} aria-label="telegram">
             <svg
               style={{ marginRight: "10px" }}
               width="40"
@@ -76,7 +77,7 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
             </svg>
           </Link>
 
-          <Link href="https://wa.me/79200000000">
+          <Link href={WHATSAPP} aria-label="whatsapp">
             <svg
               width="40"
               height="40"
