@@ -58,7 +58,11 @@ export default function Header() {
         <div className="container">
           <div className={styles.header__block}>
             <div className={styles.header__logo_block}>
-              <Link className={styles.header__logo} href="/">
+              <Link
+                className={styles.header__logo}
+                href="/"
+                aria-label="логотип"
+              >
                 <svg
                   version="1.1"
                   viewBox="0 0 1400 222"
@@ -220,7 +224,9 @@ export default function Header() {
           <ul className={styles.header__contacts}>
             {" "}
             <li>
-              <Link href={TELLINK}>{TEL}</Link>
+              <Link href={TELLINK} aria-label="telegram">
+                {TEL}
+              </Link>
             </li>
             <li
               className={styles.header__btn}
@@ -230,7 +236,7 @@ export default function Header() {
               Заказать звонок
             </li>
             <li>
-              <Link href={WHATSAPP}>
+              <Link href={WHATSAPP} aria-label="whatsapp">
                 <svg
                   width="25"
                   height="25"

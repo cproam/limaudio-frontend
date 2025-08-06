@@ -63,7 +63,7 @@ export default function Footer() {
       <div className={styles.footer__container}>
         <div className={styles.footer__left}>
           <div className={styles.footer__logo}>
-            <Link className="text-h2" href="/">
+            <Link className="text-h2" href="/" aria-label="логотип">
               <svg
                 version="1.1"
                 fill="#fff"
@@ -163,7 +163,7 @@ export default function Footer() {
 
               <ul className={styles.footer__icons}>
                 <li>
-                  <Link href={WHATSAPP}>
+                  <Link href={WHATSAPP} aria-label="whatsapp">
                     <svg
                       width="30"
                       height="30"
@@ -179,7 +179,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href={TG}>
+                  <Link href={TG} aria-label="telegram">
                     <svg
                       width="30"
                       height="30"
