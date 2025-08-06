@@ -302,7 +302,7 @@ export default function Popular() {
           {isExpanded ? "Скрыть" : "Смотреть все"}
         </button>
       </div>
-      <ul
+      <div
         className={`${styles.popular__sort} ${
           !isExpanded ? styles.collapsed : ""
         }`}
@@ -311,7 +311,7 @@ export default function Popular() {
         {isLoadingTags && <CardSkeleton heightPx="112px" marginPx="10px" />}
         {uniqueTags && <Tags uniqueTags={topics} onTagClick={handleTagClick} />}
         {error && <div style={{ color: "red" }}>{error}</div>}
-      </ul>
+      </div>
 
       <div className={styles.popular__search}>
         <button

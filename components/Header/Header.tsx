@@ -123,7 +123,7 @@ export default function Header() {
                 />
               )}
 
-              <ul className={styles.header__contacts_min}>
+              <div className={styles.header__contacts_min}>
                 {/*
                 <button
                   className="search-btn"
@@ -196,7 +196,7 @@ export default function Header() {
                     />
                   </svg>
                 </button>
-              </ul>
+              </div>
             </div>
             <nav>
               <ul>

@@ -140,9 +140,10 @@
         background: none;
     }
 
+    /*
     .header__contacts_min>button:first-child {
         margin-right: 4px;
-    }
+    }*/
 
     .header__contacts_min>button>img {
         width: 36px;
