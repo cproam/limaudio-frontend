@@ -29,8 +29,9 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
 
         <ul className="modal__list text16">
           {/*
-          <Link href="">О компании</Link>*/}
+          <Link href="">О компании</Link
           <Link href="/contacts">Контакты</Link>
+          <Link href="/polytic">Политика конфиденциальности</Link>>*/}
 
           {/*
           <Link href="">Каталог</Link>*/}
@@ -45,6 +46,8 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
           })}
 
           <br />
+          <Link href="/contacts">Контакты</Link>
+          <Link href="/polytic">Политика конфиденциальности</Link>
           <Link href="tel:88007700473">8 (800) 770-04-73</Link>
           <Link href="/" onClick={() => setCallbackModal(true)}>
             Заказать обратный звонок
