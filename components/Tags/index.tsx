@@ -68,7 +68,7 @@ export default function Tags({ uniqueTags, onTagClick, filter }: TagsProps) {
             className={`${styles.tag} ${
               filter
                 ? ""
-                : selectedTags.includes(e.title ?? null ?? null)
+                : selectedTags.includes(e.title ?? "")
                 ? styles.selected
                 : ""
             }`}
