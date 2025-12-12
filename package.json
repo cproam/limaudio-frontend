@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@pbe/react-yandex-maps": "^1.2.5",
+    "@pbe/react-yandex-maps": "^1.2.7",
     "@strapi/blocks-react-renderer": "^1.0.2",
     "marked": "^16.1.1",
     "next": "15.3.2",
