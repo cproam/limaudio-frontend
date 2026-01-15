@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-
+//отправка заявок
 export async function POST(req: NextRequest) {
   const {
     aboutForm,
